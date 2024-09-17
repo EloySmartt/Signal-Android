@@ -147,6 +147,7 @@ class SignalServiceNetworkAccess(context: Context) {
   )
 
   private val zkGroupServerPublicParams: ByteArray = try {
+    Log.i("PushServiceSocket response", BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS);
     Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS)
   } catch (e: IOException) {
     throw AssertionError(e)

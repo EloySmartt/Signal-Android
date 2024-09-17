@@ -400,6 +400,7 @@ public class PushServiceSocket {
 
   public RegistrationSessionMetadataResponse createVerificationSession(@Nullable String pushToken, @Nullable String mcc, @Nullable String mnc) throws IOException {
     final String jsonBody = JsonUtil.toJson(new VerificationSessionMetadataRequestBody(credentialsProvider.getE164(), pushToken, mcc, mnc));
+    Log.i("socket", jsonBody);
     try (Response response = makeServiceRequest(VERIFICATION_SESSION_PATH, "POST", jsonRequestBody(jsonBody), NO_HEADERS, new RegistrationSessionResponseHandler(), SealedSenderAccess.NONE, false)) {
       return parseSessionMetadataResponse(response);
     }
@@ -409,6 +410,7 @@ public class PushServiceSocket {
     String path = VERIFICATION_SESSION_PATH + "/" + sessionId;
 
     try (Response response = makeServiceRequest(path, "GET", jsonRequestBody(null), NO_HEADERS, new RegistrationSessionResponseHandler(), SealedSenderAccess.NONE, false)) {
+      Log.i("PushServiceSocket", response.toString());
       return parseSessionMetadataResponse(response);
     }
   }
@@ -418,6 +420,7 @@ public class PushServiceSocket {
 
     final UpdateVerificationSessionRequestBody requestBody = new UpdateVerificationSessionRequestBody(captchaToken, pushToken, pushChallengeToken, mcc, mnc);
     try (Response response = makeServiceRequest(path, "PATCH", jsonRequestBody(JsonUtil.toJson(requestBody)), NO_HEADERS, new PatchRegistrationSessionResponseHandler(), SealedSenderAccess.NONE, false)) {
+      Log.i("PushServiceSocket", response.toString());
       return parseSessionMetadataResponse(response);
     }
   }
@@ -439,6 +442,7 @@ public class PushServiceSocket {
     body.put("client", androidSmsRetriever ? "android-2021-03" : "android");
 
     try (Response response = makeServiceRequest(path, "POST", jsonRequestBody(JsonUtil.toJson(body)), headers, new RegistrationCodeRequestResponseHandler(), SealedSenderAccess.NONE, false)) {
+      Log.i("PushServiceSocket", response.toString());
       return parseSessionMetadataResponse(response);
     }
   }
@@ -448,6 +452,7 @@ public class PushServiceSocket {
     Map<String, String> body =  new HashMap<>();
     body.put("code", verificationCode);
     try (Response response = makeServiceRequest(path, "PUT", jsonRequestBody(JsonUtil.toJson(body)), NO_HEADERS, new RegistrationCodeSubmissionResponseHandler(), SealedSenderAccess.NONE, false)) {
+      Log.i("PushServiceSocket", response.toString());
       return parseSessionMetadataResponse(response);
     }
   }
@@ -501,6 +506,7 @@ public class PushServiceSocket {
     }
 
     String response = makeServiceRequest(path, "POST", JsonUtil.toJson(body), NO_HEADERS, new RegistrationSessionResponseHandler(), SealedSenderAccess.NONE);
+    Log.i("PushServiceSocket response", response);
     return JsonUtil.fromJson(response, VerifyAccountResponse.class);
   }
 
@@ -2387,6 +2393,7 @@ public class PushServiceSocket {
         }
       }
     } catch (IOException e) {
+      Log.e("socket", e.getMessage());
       throw new PushNetworkException(e);
     }
   }

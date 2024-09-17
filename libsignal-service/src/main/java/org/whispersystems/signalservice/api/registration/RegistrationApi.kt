@@ -5,6 +5,7 @@
 
 package org.whispersystems.signalservice.api.registration
 
+import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.whispersystems.signalservice.api.NetworkResult
@@ -33,6 +34,7 @@ class RegistrationApi(
    * `POST /v1/verification/session`
    */
   fun createRegistrationSession(fcmToken: String?, mcc: String?, mnc: String?): NetworkResult<RegistrationSessionMetadataResponse> {
+    Log.i("RegistrationApi", "POST /v1/verification/session - fcmToken: ${fcmToken}, mmc: ${mcc}, mnc: ${mnc}");
     return NetworkResult.fromFetch {
       pushServiceSocket.createVerificationSession(fcmToken, mcc, mnc)
     }
@@ -44,6 +46,7 @@ class RegistrationApi(
    * `GET /v1/verification/session/{session-id}`
    */
   fun getRegistrationSessionStatus(sessionId: String): NetworkResult<RegistrationSessionMetadataResponse> {
+    Log.i("RegistrationApi", "GET /v1/verification/session/{session-id} - sessionId: ${sessionId}");
     return NetworkResult.fromFetch {
       pushServiceSocket.getSessionStatus(sessionId)
     }
@@ -55,6 +58,7 @@ class RegistrationApi(
    * `PATCH /v1/verification/session/{session-id}`
    */
   fun submitPushChallengeToken(sessionId: String?, pushChallengeToken: String?): NetworkResult<RegistrationSessionMetadataResponse> {
+    Log.i("RegistrationApi", "PATCH /v1/verification/session/{session-id} - sessionId: ${sessionId}, pushChallengeToken: ${pushChallengeToken}");
     return NetworkResult.fromFetch {
       pushServiceSocket.patchVerificationSession(sessionId, null, null, null, null, pushChallengeToken)
     }
@@ -69,6 +73,7 @@ class RegistrationApi(
    * @param androidSmsRetrieverSupported whether the system framework will automatically parse the incoming verification message.
    */
   fun requestSmsVerificationCode(sessionId: String?, locale: Locale?, androidSmsRetrieverSupported: Boolean, transport: PushServiceSocket.VerificationCodeTransport): NetworkResult<RegistrationSessionMetadataResponse> {
+    Log.i("RegistrationApi", "POST /v1/verification/session/{session-id}/code - sessionId: ${sessionId}, locale: ${locale}, androidSmsRetrieverSupported: ${androidSmsRetrieverSupported}, transport: ${transport}");
     return NetworkResult.fromFetch {
       pushServiceSocket.requestVerificationCode(sessionId, locale, androidSmsRetrieverSupported, transport)
     }
@@ -80,6 +85,7 @@ class RegistrationApi(
    * `PUT /v1/verification/session/{session-id}/code`
    */
   fun verifyAccount(sessionId: String, verificationCode: String): NetworkResult<RegistrationSessionMetadataResponse> {
+    Log.i("RegistrationApi", "PUT /v1/verification/session/{session-id}/code - sessionId: ${sessionId}, verificationCode: ${verificationCode}");
     return NetworkResult.fromFetch {
       pushServiceSocket.submitVerificationCode(sessionId, verificationCode)
     }
@@ -91,6 +97,7 @@ class RegistrationApi(
    * `PATCH /v1/verification/session/{session-id}`
    */
   fun submitCaptchaToken(sessionId: String, captchaToken: String): NetworkResult<RegistrationSessionMetadataResponse> {
+    Log.i("RegistrationApi", "PATCH /v1/verification/session/{session-id} - sessionId: ${sessionId}, captchaToken: ${captchaToken}");
     return NetworkResult.fromFetch {
       pushServiceSocket.patchVerificationSession(sessionId, null, null, null, captchaToken, null)
     }
@@ -102,6 +109,7 @@ class RegistrationApi(
    * `POST /v1/registration`
    */
   fun registerAccount(sessionId: String?, recoveryPassword: String?, attributes: AccountAttributes?, aciPreKeys: PreKeyCollection?, pniPreKeys: PreKeyCollection?, fcmToken: String?, skipDeviceTransfer: Boolean): NetworkResult<VerifyAccountResponse> {
+    Log.i("RegistrationApi", "POST /v1/registration - sessionId: ${sessionId}, recoveryPassword: ${recoveryPassword}, attributes: ${attributes.toString()}, aciPreKeys: ${aciPreKeys.toString()}, pniPreKeys: ${pniPreKeys.toString()}, fcmToken: ${fcmToken}, skipDeviceTransfer: ${skipDeviceTransfer}");
     return NetworkResult.fromFetch {
       pushServiceSocket.submitRegistrationRequest(sessionId, recoveryPassword, attributes, aciPreKeys, pniPreKeys, fcmToken, skipDeviceTransfer)
     }
