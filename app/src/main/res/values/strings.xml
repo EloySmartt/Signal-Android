@@ -5,8 +5,13 @@
   -->
 
 <!-- smartling.instruction_comments_enabled = on -->
+
+<!DOCTYPE resources [
+    <!ENTITY appname "Smartt Messenger">
+]>
+
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+    <string name="app_name" translatable="false">&appname;</string>
 
     <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
@@ -43,7 +48,7 @@
     <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating…</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">&appname; is updating…</string>
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
