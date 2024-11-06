@@ -1,4 +1,4 @@
-package org.thoughtcrime.video.app.ui.theme
+package com.smarttmessenger.video.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

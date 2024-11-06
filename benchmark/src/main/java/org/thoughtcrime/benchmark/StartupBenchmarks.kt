@@ -1,4 +1,4 @@
-package org.thoughtcrime.benchmark
+package com.smarttmessenger.benchmark
 
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.ExperimentalMetricApi
@@ -35,7 +35,7 @@ class StartupBenchmarks {
   private fun measureStartup(iterations: Int, compilationMode: CompilationMode) {
     var setup = false
     benchmarkRule.measureRepeated(
-      packageName = "org.thoughtcrime.securesms",
+      packageName = "com.smarttmessenger.app",
       metrics = listOf(StartupTimingMetric(), TraceSectionMetric("ConversationListDataSource#load")),
       iterations = iterations,
       startupMode = StartupMode.COLD,

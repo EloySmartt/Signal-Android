@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalBaselineProfilesApi::class)
 
-package org.thoughtcrime.benchmark
+package com.smarttmessenger.benchmark
 
 import androidx.benchmark.macro.ExperimentalBaselineProfilesApi
 import androidx.benchmark.macro.junit4.BaselineProfileRule
@@ -25,7 +25,7 @@ class BaselineProfileGenerator {
   fun startup() {
     var setup = false
     baselineProfileRule.collectBaselineProfile(
-      packageName = "org.thoughtcrime.securesms",
+      packageName = "com.smarttmessenger.app",
       profileBlock = {
         if (!setup) {
           BenchmarkSetup.setup("cold-start", device)

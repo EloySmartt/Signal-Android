@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.playback
+package com.smarttmessenger.video.app.playback
 
 import android.os.Bundle
 import android.util.Log
@@ -27,8 +27,8 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.ui.PlayerView
-import org.thoughtcrime.video.app.ui.composables.LabeledButton
-import org.thoughtcrime.video.app.ui.theme.SignalTheme
+import com.smarttmessenger.video.app.ui.composables.LabeledButton
+import com.smarttmessenger.video.app.ui.theme.SignalTheme
 
 class PlaybackTestActivity : AppCompatActivity() {
   private val viewModel: PlaybackTestViewModel by viewModels()

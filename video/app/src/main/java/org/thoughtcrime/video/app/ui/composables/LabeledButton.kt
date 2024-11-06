@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.ui.composables
+package com.smarttmessenger.video.app.ui.composables
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text

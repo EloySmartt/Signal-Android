@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transitionSet>
-    <transition class="org.thoughtcrime.securesms.animation.transitions.CircleAvatarTransition" />
+    <transition class="com.smarttmessenger.app.animation.transitions.CircleAvatarTransition" />
 
-    <transition class="org.thoughtcrime.securesms.animation.transitions.WipeDownTransition" />
+    <transition class="com.smarttmessenger.app.animation.transitions.WipeDownTransition" />
 </transitionSet>

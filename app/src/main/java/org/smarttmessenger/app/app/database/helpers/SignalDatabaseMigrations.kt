@@ -1,0 +1,248 @@
+package com.smarttmessenger.app.database.helpers
+
+import android.app.Application
+import android.content.Context
+import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.areForeignKeyConstraintsEnabled
+import org.signal.core.util.logging.Log
+import org.signal.core.util.withinTransaction
+import com.smarttmessenger.app.database.helpers.migration.SignalDatabaseMigration
+import com.smarttmessenger.app.database.helpers.migration.V149_LegacyMigrations
+import com.smarttmessenger.app.database.helpers.migration.V150_UrgentMslFlagMigration
+import com.smarttmessenger.app.database.helpers.migration.V151_MyStoryMigration
+import com.smarttmessenger.app.database.helpers.migration.V152_StoryGroupTypesMigration
+import com.smarttmessenger.app.database.helpers.migration.V153_MyStoryMigration
+import com.smarttmessenger.app.database.helpers.migration.V154_PniSignaturesMigration
+import com.smarttmessenger.app.database.helpers.migration.V155_SmsExporterMigration
+import com.smarttmessenger.app.database.helpers.migration.V156_RecipientUnregisteredTimestampMigration
+import com.smarttmessenger.app.database.helpers.migration.V157_RecipeintHiddenMigration
+import com.smarttmessenger.app.database.helpers.migration.V158_GroupsLastForceUpdateTimestampMigration
+import com.smarttmessenger.app.database.helpers.migration.V159_ThreadUnreadSelfMentionCount
+import com.smarttmessenger.app.database.helpers.migration.V160_SmsMmsExportedIndexMigration
+import com.smarttmessenger.app.database.helpers.migration.V161_StorySendMessageIdIndex
+import com.smarttmessenger.app.database.helpers.migration.V162_ThreadUnreadSelfMentionCountFixup
+import com.smarttmessenger.app.database.helpers.migration.V163_RemoteMegaphoneSnoozeSupportMigration
+import com.smarttmessenger.app.database.helpers.migration.V164_ThreadDatabaseReadIndexMigration
+import com.smarttmessenger.app.database.helpers.migration.V165_MmsMessageBoxPaymentTransactionIndexMigration
+import com.smarttmessenger.app.database.helpers.migration.V166_ThreadAndMessageForeignKeys
+import com.smarttmessenger.app.database.helpers.migration.V167_RecreateReactionTriggers
+import com.smarttmessenger.app.database.helpers.migration.V168_SingleMessageTableMigration
+import com.smarttmessenger.app.database.helpers.migration.V169_EmojiSearchIndexRank
+import com.smarttmessenger.app.database.helpers.migration.V170_CallTableMigration
+import com.smarttmessenger.app.database.helpers.migration.V171_ThreadForeignKeyFix
+import com.smarttmessenger.app.database.helpers.migration.V172_GroupMembershipMigration
+import com.smarttmessenger.app.database.helpers.migration.V173_ScheduledMessagesMigration
+import com.smarttmessenger.app.database.helpers.migration.V174_ReactionForeignKeyMigration
+import com.smarttmessenger.app.database.helpers.migration.V175_FixFullTextSearchLink
+import com.smarttmessenger.app.database.helpers.migration.V176_AddScheduledDateToQuoteIndex
+import com.smarttmessenger.app.database.helpers.migration.V177_MessageSendLogTableCleanupMigration
+import com.smarttmessenger.app.database.helpers.migration.V178_ReportingTokenColumnMigration
+import com.smarttmessenger.app.database.helpers.migration.V179_CleanupDanglingMessageSendLogMigration
+import com.smarttmessenger.app.database.helpers.migration.V180_RecipientNicknameMigration
+import com.smarttmessenger.app.database.helpers.migration.V181_ThreadTableForeignKeyCleanup
+import com.smarttmessenger.app.database.helpers.migration.V182_CallTableMigration
+import com.smarttmessenger.app.database.helpers.migration.V183_CallLinkTableMigration
+import com.smarttmessenger.app.database.helpers.migration.V184_CallLinkReplaceIndexMigration
+import com.smarttmessenger.app.database.helpers.migration.V185_MessageRecipientsAndEditMessageMigration
+import com.smarttmessenger.app.database.helpers.migration.V186_ForeignKeyIndicesMigration
+import com.smarttmessenger.app.database.helpers.migration.V187_MoreForeignKeyIndexesMigration
+import com.smarttmessenger.app.database.helpers.migration.V188_FixMessageRecipientsAndEditMessageMigration
+import com.smarttmessenger.app.database.helpers.migration.V189_CreateCallLinkTableColumnsAndRebuildFKReference
+import com.smarttmessenger.app.database.helpers.migration.V190_UniqueMessageMigration
+import com.smarttmessenger.app.database.helpers.migration.V191_UniqueMessageMigrationV2
+import com.smarttmessenger.app.database.helpers.migration.V192_CallLinkTableNullableRootKeys
+import com.smarttmessenger.app.database.helpers.migration.V193_BackCallLinksWithRecipient
+import com.smarttmessenger.app.database.helpers.migration.V194_KyberPreKeyMigration
+import com.smarttmessenger.app.database.helpers.migration.V195_GroupMemberForeignKeyMigration
+import com.smarttmessenger.app.database.helpers.migration.V196_BackCallLinksWithRecipientV2
+import com.smarttmessenger.app.database.helpers.migration.V197_DropAvatarColorFromCallLinks
+import com.smarttmessenger.app.database.helpers.migration.V198_AddMacDigestColumn
+import com.smarttmessenger.app.database.helpers.migration.V199_AddThreadActiveColumn
+import com.smarttmessenger.app.database.helpers.migration.V200_ResetPniColumn
+import com.smarttmessenger.app.database.helpers.migration.V201_RecipientTableValidations
+import com.smarttmessenger.app.database.helpers.migration.V202_DropMessageTableThreadDateIndex
+import com.smarttmessenger.app.database.helpers.migration.V203_PreKeyStaleTimestamp
+import com.smarttmessenger.app.database.helpers.migration.V204_GroupForeignKeyMigration
+import com.smarttmessenger.app.database.helpers.migration.V205_DropPushTable
+import com.smarttmessenger.app.database.helpers.migration.V206_AddConversationCountIndex
+import com.smarttmessenger.app.database.helpers.migration.V207_AddChunkSizeColumn
+import com.smarttmessenger.app.database.helpers.migration.V209_ClearRecipientPniFromAciColumn
+import com.smarttmessenger.app.database.helpers.migration.V210_FixPniPossibleColumns
+import com.smarttmessenger.app.database.helpers.migration.V211_ReceiptColumnRenames
+import com.smarttmessenger.app.database.helpers.migration.V212_RemoveDistributionListUniqueConstraint
+import com.smarttmessenger.app.database.helpers.migration.V213_FixUsernameInE164Column
+import com.smarttmessenger.app.database.helpers.migration.V214_PhoneNumberSharingColumn
+import com.smarttmessenger.app.database.helpers.migration.V215_RemoveAttachmentUniqueId
+import com.smarttmessenger.app.database.helpers.migration.V216_PhoneNumberDiscoverable
+import com.smarttmessenger.app.database.helpers.migration.V217_MessageTableExtrasColumn
+import com.smarttmessenger.app.database.helpers.migration.V218_RecipientPniSignatureVerified
+import com.smarttmessenger.app.database.helpers.migration.V219_PniPreKeyStores
+import com.smarttmessenger.app.database.helpers.migration.V220_PreKeyConstraints
+import com.smarttmessenger.app.database.helpers.migration.V221_AddReadColumnToCallEventsTable
+import com.smarttmessenger.app.database.helpers.migration.V222_DataHashRefactor
+import com.smarttmessenger.app.database.helpers.migration.V223_AddNicknameAndNoteFieldsToRecipientTable
+import com.smarttmessenger.app.database.helpers.migration.V224_AddAttachmentArchiveColumns
+import com.smarttmessenger.app.database.helpers.migration.V225_AddLocalUserJoinedStateAndGroupCallActiveState
+import com.smarttmessenger.app.database.helpers.migration.V226_AddAttachmentMediaIdIndex
+import com.smarttmessenger.app.database.helpers.migration.V227_AddAttachmentArchiveTransferState
+import com.smarttmessenger.app.database.helpers.migration.V228_AddNameCollisionTables
+import com.smarttmessenger.app.database.helpers.migration.V229_MarkMissedCallEventsNotified
+import com.smarttmessenger.app.database.helpers.migration.V230_UnreadCountIndices
+import com.smarttmessenger.app.database.helpers.migration.V231_ArchiveThumbnailColumns
+import com.smarttmessenger.app.database.helpers.migration.V232_CreateInAppPaymentTable
+import com.smarttmessenger.app.database.helpers.migration.V233_FixInAppPaymentTableDefaultNotifiedValue
+import com.smarttmessenger.app.database.helpers.migration.V234_ThumbnailRestoreStateColumn
+import com.smarttmessenger.app.database.helpers.migration.V235_AttachmentUuidColumn
+import com.smarttmessenger.app.database.helpers.migration.V236_FixInAppSubscriberCurrencyIfAble
+import com.smarttmessenger.app.database.helpers.migration.V237_ResetGroupForceUpdateTimestamps
+import com.smarttmessenger.app.database.helpers.migration.V238_AddGroupSendEndorsementsColumns
+import com.smarttmessenger.app.database.helpers.migration.V239_MessageFullTextSearchEmojiSupport
+import com.smarttmessenger.app.database.helpers.migration.V240_MessageFullTextSearchSecureDelete
+import com.smarttmessenger.app.database.helpers.migration.V241_ExpireTimerVersion
+import com.smarttmessenger.app.database.helpers.migration.V242_MessageFullTextSearchEmojiSupportV2
+import com.smarttmessenger.app.database.helpers.migration.V243_MessageFullTextSearchDisableSecureDelete
+import com.smarttmessenger.app.database.helpers.migration.V244_AttachmentRemoteIv
+import com.smarttmessenger.app.database.helpers.migration.V245_DeletionTimestampOnCallLinks
+import com.smarttmessenger.app.database.helpers.migration.V246_DropThumbnailCdnFromAttachments
+
+/**
+ * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
+ */
+object SignalDatabaseMigrations {
+
+  val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
+
+  private val migrations: List<Pair<Int, SignalDatabaseMigration>> = listOf(
+    149 to V149_LegacyMigrations,
+    150 to V150_UrgentMslFlagMigration,
+    151 to V151_MyStoryMigration,
+    152 to V152_StoryGroupTypesMigration,
+    153 to V153_MyStoryMigration,
+    154 to V154_PniSignaturesMigration,
+    155 to V155_SmsExporterMigration,
+    156 to V156_RecipientUnregisteredTimestampMigration,
+    157 to V157_RecipeintHiddenMigration,
+    158 to V158_GroupsLastForceUpdateTimestampMigration,
+    159 to V159_ThreadUnreadSelfMentionCount,
+    160 to V160_SmsMmsExportedIndexMigration,
+    161 to V161_StorySendMessageIdIndex,
+    162 to V162_ThreadUnreadSelfMentionCountFixup,
+    163 to V163_RemoteMegaphoneSnoozeSupportMigration,
+    164 to V164_ThreadDatabaseReadIndexMigration,
+    165 to V165_MmsMessageBoxPaymentTransactionIndexMigration,
+    166 to V166_ThreadAndMessageForeignKeys,
+    167 to V167_RecreateReactionTriggers,
+    168 to V168_SingleMessageTableMigration,
+    169 to V169_EmojiSearchIndexRank,
+    170 to V170_CallTableMigration,
+    171 to V171_ThreadForeignKeyFix,
+    172 to V172_GroupMembershipMigration,
+    173 to V173_ScheduledMessagesMigration,
+    174 to V174_ReactionForeignKeyMigration,
+    175 to V175_FixFullTextSearchLink,
+    176 to V176_AddScheduledDateToQuoteIndex,
+    177 to V177_MessageSendLogTableCleanupMigration,
+    178 to V178_ReportingTokenColumnMigration,
+    179 to V179_CleanupDanglingMessageSendLogMigration,
+    180 to V180_RecipientNicknameMigration,
+    181 to V181_ThreadTableForeignKeyCleanup,
+    182 to V182_CallTableMigration,
+    183 to V183_CallLinkTableMigration,
+    184 to V184_CallLinkReplaceIndexMigration,
+    185 to V185_MessageRecipientsAndEditMessageMigration,
+    186 to V186_ForeignKeyIndicesMigration,
+    187 to V187_MoreForeignKeyIndexesMigration,
+    188 to V188_FixMessageRecipientsAndEditMessageMigration,
+    189 to V189_CreateCallLinkTableColumnsAndRebuildFKReference,
+    190 to V190_UniqueMessageMigration,
+    191 to V191_UniqueMessageMigrationV2,
+    192 to V192_CallLinkTableNullableRootKeys,
+    193 to V193_BackCallLinksWithRecipient,
+    194 to V194_KyberPreKeyMigration,
+    195 to V195_GroupMemberForeignKeyMigration,
+    196 to V196_BackCallLinksWithRecipientV2,
+    197 to V197_DropAvatarColorFromCallLinks,
+    198 to V198_AddMacDigestColumn,
+    199 to V199_AddThreadActiveColumn,
+    200 to V200_ResetPniColumn,
+    201 to V201_RecipientTableValidations,
+    202 to V202_DropMessageTableThreadDateIndex,
+    203 to V203_PreKeyStaleTimestamp,
+    204 to V204_GroupForeignKeyMigration,
+    205 to V205_DropPushTable,
+    206 to V206_AddConversationCountIndex,
+    207 to V207_AddChunkSizeColumn,
+    // 208 was a bad migration that only manipulated data and did not change schema, replaced by 209
+    209 to V209_ClearRecipientPniFromAciColumn,
+    210 to V210_FixPniPossibleColumns,
+    211 to V211_ReceiptColumnRenames,
+    212 to V212_RemoveDistributionListUniqueConstraint,
+    213 to V213_FixUsernameInE164Column,
+    214 to V214_PhoneNumberSharingColumn,
+    215 to V215_RemoveAttachmentUniqueId,
+    216 to V216_PhoneNumberDiscoverable,
+    217 to V217_MessageTableExtrasColumn,
+    218 to V218_RecipientPniSignatureVerified,
+    219 to V219_PniPreKeyStores,
+    220 to V220_PreKeyConstraints,
+    221 to V221_AddReadColumnToCallEventsTable,
+    222 to V222_DataHashRefactor,
+    223 to V223_AddNicknameAndNoteFieldsToRecipientTable,
+    224 to V224_AddAttachmentArchiveColumns,
+    225 to V225_AddLocalUserJoinedStateAndGroupCallActiveState,
+    226 to V226_AddAttachmentMediaIdIndex,
+    227 to V227_AddAttachmentArchiveTransferState,
+    228 to V228_AddNameCollisionTables,
+    229 to V229_MarkMissedCallEventsNotified,
+    230 to V230_UnreadCountIndices,
+    231 to V231_ArchiveThumbnailColumns,
+    232 to V232_CreateInAppPaymentTable,
+    233 to V233_FixInAppPaymentTableDefaultNotifiedValue,
+    234 to V234_ThumbnailRestoreStateColumn,
+    235 to V235_AttachmentUuidColumn,
+    236 to V236_FixInAppSubscriberCurrencyIfAble,
+    237 to V237_ResetGroupForceUpdateTimestamps,
+    238 to V238_AddGroupSendEndorsementsColumns,
+    239 to V239_MessageFullTextSearchEmojiSupport,
+    240 to V240_MessageFullTextSearchSecureDelete,
+    241 to V241_ExpireTimerVersion,
+    242 to V242_MessageFullTextSearchEmojiSupportV2,
+    243 to V243_MessageFullTextSearchDisableSecureDelete,
+    244 to V244_AttachmentRemoteIv,
+    245 to V245_DeletionTimestampOnCallLinks,
+    246 to V246_DropThumbnailCdnFromAttachments
+  )
+
+  const val DATABASE_VERSION = 246
+
+  @JvmStatic
+  fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    val initialForeignKeyState = db.areForeignKeyConstraintsEnabled()
+
+    for (migrationData in migrations) {
+      val (version, migration) = migrationData
+
+      if (oldVersion < version) {
+        Log.i(TAG, "Running migration for version $version: ${migration.javaClass.simpleName}. Foreign keys: ${migration.enableForeignKeys}")
+        val startTime = System.currentTimeMillis()
+
+        db.setForeignKeyConstraintsEnabled(migration.enableForeignKeys)
+        db.withinTransaction {
+          migration.migrate(context, db, oldVersion, newVersion)
+          db.version = version
+        }
+
+        Log.i(TAG, "Successfully completed migration for version $version in ${System.currentTimeMillis() - startTime} ms")
+      }
+    }
+
+    db.setForeignKeyConstraintsEnabled(initialForeignKeyState)
+  }
+
+  @JvmStatic
+  fun migratePostTransaction(context: Context, oldVersion: Int) {
+    if (oldVersion < V149_LegacyMigrations.MIGRATE_PREKEYS_VERSION) {
+      PreKeyMigrationHelper.cleanUpPreKeys(context)
+    }
+  }
+}

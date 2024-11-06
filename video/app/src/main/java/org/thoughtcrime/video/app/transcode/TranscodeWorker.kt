@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.transcode
+package com.smarttmessenger.video.app.transcode
 
 import android.app.PendingIntent
 import android.content.Context
@@ -22,13 +22,13 @@ import androidx.work.ForegroundInfo
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import org.signal.core.util.readLength
-import org.thoughtcrime.securesms.video.StreamingTranscoder
-import org.thoughtcrime.securesms.video.TranscodingPreset
-import org.thoughtcrime.securesms.video.postprocessing.Mp4FaststartPostProcessor
-import org.thoughtcrime.securesms.video.videoconverter.MediaConverter.VideoCodec
-import org.thoughtcrime.securesms.video.videoconverter.mediadatasource.InputStreamMediaDataSource
-import org.thoughtcrime.securesms.video.videoconverter.utils.VideoConstants
-import org.thoughtcrime.video.app.R
+import com.smarttmessenger.app.video.StreamingTranscoder
+import com.smarttmessenger.app.video.TranscodingPreset
+import com.smarttmessenger.app.video.postprocessing.Mp4FaststartPostProcessor
+import com.smarttmessenger.app.video.videoconverter.MediaConverter.VideoCodec
+import com.smarttmessenger.app.video.videoconverter.mediadatasource.InputStreamMediaDataSource
+import com.smarttmessenger.app.video.videoconverter.utils.VideoConstants
+import com.smarttmessenger.video.app.R
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException

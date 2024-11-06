@@ -1,4 +1,4 @@
-package org.thoughtcrime.benchmark
+package com.smarttmessenger.benchmark
 
 import android.Manifest
 import android.os.Build
@@ -23,7 +23,7 @@ class ConversationBenchmarks {
   fun simpleConversationOpen() {
     var setup = false
     benchmarkRule.measureRepeated(
-      packageName = "org.thoughtcrime.securesms",
+      packageName = "com.smarttmessenger.app",
       metrics = listOf(
         TraceSectionMetric("6-ConversationOpen"),
         TraceSectionMetric("1-ConversationOpen-ViewModel-Init"),

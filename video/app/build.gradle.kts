@@ -15,11 +15,11 @@ val signalJavaVersion: JavaVersion by rootProject.extra
 val signalKotlinJvmTarget: String by rootProject.extra
 
 android {
-  namespace = "org.thoughtcrime.video.app"
+  namespace = "com.smarttmessenger.video.app"
   compileSdkVersion = signalCompileSdkVersion
 
   defaultConfig {
-    applicationId = "org.thoughtcrime.video.app"
+    applicationId = "com.smarttmessenger.video.app"
     minSdk = 23
     targetSdk = signalTargetSdkVersion
     versionCode = 1

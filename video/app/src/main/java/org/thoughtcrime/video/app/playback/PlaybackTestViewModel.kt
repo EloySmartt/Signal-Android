@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.playback
+package com.smarttmessenger.video.app.playback
 
 import android.content.Context
 import android.net.Uri

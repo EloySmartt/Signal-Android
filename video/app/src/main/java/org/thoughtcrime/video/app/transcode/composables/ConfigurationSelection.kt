@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.transcode.composables
+package com.smarttmessenger.video.app.transcode.composables
 
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
@@ -31,14 +31,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.thoughtcrime.securesms.video.TranscodingPreset
-import org.thoughtcrime.securesms.video.videoconverter.utils.DeviceCapabilities
-import org.thoughtcrime.video.app.transcode.MAX_VIDEO_MEGABITRATE
-import org.thoughtcrime.video.app.transcode.MIN_VIDEO_MEGABITRATE
-import org.thoughtcrime.video.app.transcode.OPTIONS_AUDIO_KILOBITRATES
-import org.thoughtcrime.video.app.transcode.TranscodeTestViewModel
-import org.thoughtcrime.video.app.transcode.VideoResolution
-import org.thoughtcrime.video.app.ui.composables.LabeledButton
+import com.smarttmessenger.app.video.TranscodingPreset
+import com.smarttmessenger.app.video.videoconverter.utils.DeviceCapabilities
+import com.smarttmessenger.video.app.transcode.MAX_VIDEO_MEGABITRATE
+import com.smarttmessenger.video.app.transcode.MIN_VIDEO_MEGABITRATE
+import com.smarttmessenger.video.app.transcode.OPTIONS_AUDIO_KILOBITRATES
+import com.smarttmessenger.video.app.transcode.TranscodeTestViewModel
+import com.smarttmessenger.video.app.transcode.VideoResolution
+import com.smarttmessenger.video.app.ui.composables.LabeledButton
 import kotlin.math.roundToInt
 
 /**

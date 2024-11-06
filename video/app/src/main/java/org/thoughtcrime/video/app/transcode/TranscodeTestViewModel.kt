@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.transcode
+package com.smarttmessenger.video.app.transcode
 
 import android.content.Context
 import android.net.Uri
@@ -16,9 +16,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.work.WorkInfo
 import kotlinx.coroutines.flow.Flow
-import org.thoughtcrime.securesms.video.TranscodingPreset
-import org.thoughtcrime.securesms.video.TranscodingQuality
-import org.thoughtcrime.securesms.video.videoconverter.MediaConverter
+import com.smarttmessenger.app.video.TranscodingPreset
+import com.smarttmessenger.app.video.TranscodingQuality
+import com.smarttmessenger.app.video.videoconverter.MediaConverter
 import java.util.UUID
 import kotlin.math.roundToInt
 

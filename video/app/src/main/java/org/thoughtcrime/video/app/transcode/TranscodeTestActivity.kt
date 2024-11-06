@@ -3,7 +3,7 @@
  * 2SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.transcode
+package com.smarttmessenger.video.app.transcode
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -34,13 +34,13 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.thoughtcrime.video.app.R
-import org.thoughtcrime.video.app.transcode.composables.ConfigureEncodingParameters
-import org.thoughtcrime.video.app.transcode.composables.SelectInput
-import org.thoughtcrime.video.app.transcode.composables.SelectOutput
-import org.thoughtcrime.video.app.transcode.composables.TranscodingJobProgress
-import org.thoughtcrime.video.app.transcode.composables.WorkState
-import org.thoughtcrime.video.app.ui.theme.SignalTheme
+import com.smarttmessenger.video.app.R
+import com.smarttmessenger.video.app.transcode.composables.ConfigureEncodingParameters
+import com.smarttmessenger.video.app.transcode.composables.SelectInput
+import com.smarttmessenger.video.app.transcode.composables.SelectOutput
+import com.smarttmessenger.video.app.transcode.composables.TranscodingJobProgress
+import com.smarttmessenger.video.app.transcode.composables.WorkState
+import com.smarttmessenger.video.app.ui.theme.SignalTheme
 
 /**
  * Visual entry point for testing transcoding in the video sample app.

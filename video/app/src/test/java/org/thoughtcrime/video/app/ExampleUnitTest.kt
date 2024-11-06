@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app
+package com.smarttmessenger.video.app
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

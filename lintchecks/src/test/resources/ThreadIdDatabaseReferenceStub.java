@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package com.smarttmessenger.app.database;
 
 interface ThreadIdDatabaseReference {
   void remapThread(long fromId, long toId);

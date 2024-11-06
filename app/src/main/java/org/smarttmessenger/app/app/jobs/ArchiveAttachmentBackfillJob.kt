@@ -1,0 +1,63 @@
+/*
+ * Copyright 2024 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package com.smarttmessenger.app.jobs
+
+import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.logging.Log
+import com.smarttmessenger.app.backup.v2.BackupV2Event
+import com.smarttmessenger.app.database.SignalDatabase
+import com.smarttmessenger.app.dependencies.AppDependencies
+import com.smarttmessenger.app.jobmanager.Job
+import com.smarttmessenger.app.keyvalue.SignalStore
+import kotlin.time.Duration.Companion.days
+
+/**
+ * When run, this will find the next attachment that needs to be uploaded to the archive service and upload it.
+ * It will enqueue a copy of itself if it thinks there is more work to be done, and that copy will continue the upload process.
+ */
+class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) : Job(parameters) {
+  companion object {
+    private val TAG = Log.tag(ArchiveAttachmentBackfillJob::class.java)
+
+    const val KEY = "ArchiveAttachmentBackfillJob"
+  }
+
+  constructor() : this(
+    parameters = Parameters.Builder()
+      .setQueue("ArchiveAttachmentBackfillJob")
+      .setMaxInstancesForQueue(2)
+      .setLifespan(30.days.inWholeMilliseconds)
+      .setMaxAttempts(Parameters.UNLIMITED)
+      .build()
+  )
+
+  override fun serialize(): ByteArray? = null
+
+  override fun getFactoryKey(): String = KEY
+
+  override fun run(): Result {
+    val jobs = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
+      .map { attachmentId -> UploadAttachmentToArchiveJob(attachmentId, forBackfill = true) }
+
+    SignalStore.backup.totalAttachmentUploadCount = jobs.size.toLong()
+    SignalStore.backup.currentAttachmentUploadCount = 0
+
+    EventBus.getDefault().postSticky(BackupV2Event(BackupV2Event.Type.PROGRESS_ATTACHMENTS, count = 0, estimatedTotalCount = jobs.size.toLong()))
+
+    Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.")
+    AppDependencies.jobManager.addAll(jobs)
+
+    return Result.success()
+  }
+
+  override fun onFailure() = Unit
+
+  class Factory : Job.Factory<ArchiveAttachmentBackfillJob> {
+    override fun create(parameters: Parameters, serializedData: ByteArray?): ArchiveAttachmentBackfillJob {
+      return ArchiveAttachmentBackfillJob(parameters)
+    }
+  }
+}

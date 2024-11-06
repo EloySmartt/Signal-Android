@@ -1,15 +1,15 @@
 package org.signal.benchmark.setup
 
-import org.thoughtcrime.securesms.attachments.Cdn
-import org.thoughtcrime.securesms.attachments.PointerAttachment
-import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.database.MessageType
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.TestDbUtils
-import org.thoughtcrime.securesms.mms.IncomingMessage
-import org.thoughtcrime.securesms.mms.OutgoingMessage
-import org.thoughtcrime.securesms.mms.QuoteModel
-import org.thoughtcrime.securesms.recipients.Recipient
+import com.smarttmessenger.app.attachments.Cdn
+import com.smarttmessenger.app.attachments.PointerAttachment
+import com.smarttmessenger.app.database.AttachmentTable
+import com.smarttmessenger.app.database.MessageType
+import com.smarttmessenger.app.database.SignalDatabase
+import com.smarttmessenger.app.database.TestDbUtils
+import com.smarttmessenger.app.mms.IncomingMessage
+import com.smarttmessenger.app.mms.OutgoingMessage
+import com.smarttmessenger.app.mms.QuoteModel
+import com.smarttmessenger.app.recipients.Recipient
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId

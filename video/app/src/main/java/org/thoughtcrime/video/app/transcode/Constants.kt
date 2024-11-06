@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app.transcode
+package com.smarttmessenger.video.app.transcode
 
 /**
  * A dumping ground for constants that should be referenced across the sample app.

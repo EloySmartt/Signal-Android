@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.video.app
+package com.smarttmessenger.video.app
 
 import android.content.Context
 import android.content.Intent
@@ -31,10 +31,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import org.signal.core.util.logging.AndroidLogger
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.video.app.playback.PlaybackTestActivity
-import org.thoughtcrime.video.app.transcode.TranscodeTestActivity
-import org.thoughtcrime.video.app.ui.composables.LabeledButton
-import org.thoughtcrime.video.app.ui.theme.SignalTheme
+import com.smarttmessenger.video.app.playback.PlaybackTestActivity
+import com.smarttmessenger.video.app.transcode.TranscodeTestActivity
+import com.smarttmessenger.video.app.ui.composables.LabeledButton
+import com.smarttmessenger.video.app.ui.theme.SignalTheme
 
 /**
  * Main activity for this sample app.

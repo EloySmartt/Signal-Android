@@ -33,11 +33,11 @@ import kotlin.time.Duration.Companion.seconds
  * libsignal-net for a configurable percentage of the _successful_ web socket requests.
  *
  * Stats are collected for the shadowed requests and persisted across app restarts
- * using [org.thoughtcrime.securesms.keyvalue.InternalValues].
+ * using [com.smarttmessenger.app.keyvalue.InternalValues].
  *
  * When a hardcoded error threshold is reached, the user is notified to submit debug logs.
  *
- * @see [org.thoughtcrime.securesms.util.RemoteConfig.libSignalWebSocketShadowingPercentage]
+ * @see [com.smarttmessenger.app.util.RemoteConfig.libSignalWebSocketShadowingPercentage]
  */
 class ShadowingWebSocketConnection(
   name: String,
