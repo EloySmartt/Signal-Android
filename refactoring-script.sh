@@ -29,3 +29,20 @@ for dir in $(find . -type d -name "securesms"); do
     rm -R $DELPATH
 done;
 
+for dir in $(find . -type d -name "thoughtcrime"); do
+    DELPATH=$dir
+	echo "Dir found: $dir"
+	
+	NEWPATH=${dir//thoughtcrime/smarttmessenger}
+	echo "1) Moving from ${dir} to ${NEWPATH}"
+    mv $dir $NEWPATH
+	dir=${NEWPATH}
+    DELPATH=${DELPATH%/*}
+
+	NEWPATH=${dir//org/com}
+	echo "2) Moving from ${dir} to ${NEWPATH}"
+    mkdir -p $NEWPATH
+    cp -r $dir/* $NEWPATH
+    
+    rm -R $DELPATH
+done;
