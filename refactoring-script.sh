@@ -52,10 +52,10 @@ echo "Replacing org.thoughtcrime for $NEW_PACKAGE_NAME_SHORT"
 grep "org.thoughtcrime" --exclude="refactoring-script.sh" . -Flr | xargs -L 1 sed -i "" -e "s#org.thoughtcrime#$NEW_PACKAGE_NAME_SHORT#g"
 
 echo "Replacing org_thoughtcrime_securesms for $NEW_PACKAGE_NAME_UNDERSCORED"
-grep "org_thoughtcrime_securesms" --exclude="refactoring-script.sh" . -lr | xargs -L 1 sed -i "" "s#org_thoughtcrime_securesms#$NEW_PACKAGE_NAME_UNDERSCORED#g"
+grep "org_thoughtcrime_securesms" --exclude="refactoring-script.sh" . -Flr | xargs -L 1 sed -i "" "s#org_thoughtcrime_securesms#$NEW_PACKAGE_NAME_UNDERSCORED#g"
 
 echo "Replacing org/thoughtcrime/securesms for ${DIR_COMPONENTS[0]}/${DIR_COMPONENTS[1]}/${DIR_COMPONENTS[2]}"
-grep "org/thoughtcrime/securesms" --exclude="refactoring-script.sh" . -lr | xargs -L 1 sed -i "" "s#org/thoughtcrime/securesms#${DIR_COMPONENTS[0]}/${DIR_COMPONENTS[1]}/${DIR_COMPONENTS[2]}#g"
+grep "org/thoughtcrime/securesms" --exclude="refactoring-script.sh" . -Flr | xargs -L 1 sed -i "" "s#org/thoughtcrime/securesms#${DIR_COMPONENTS[0]}/${DIR_COMPONENTS[1]}/${DIR_COMPONENTS[2]}#g"
 
 
 #### JNI files renaming
