@@ -1,0 +1,97 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.smarttmessenger.app",
+  "variantName": "playProdRelease",
+  "elements": [
+    {
+      "type": "UNIVERSAL",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 149603,
+      "versionName": "7.28.4",
+      "outputFile": "Signal-Android-play-prod-universal-release-7.28.4.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86_64"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 149603,
+      "versionName": "7.28.4",
+      "outputFile": "Signal-Android-play-prod-x86_64-release-7.28.4.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "x86"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 149603,
+      "versionName": "7.28.4",
+      "outputFile": "Signal-Android-play-prod-x86-release-7.28.4.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "arm64-v8a"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 149603,
+      "versionName": "7.28.4",
+      "outputFile": "Signal-Android-play-prod-arm64-v8a-release-7.28.4.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "ABI",
+          "value": "armeabi-v7a"
+        }
+      ],
+      "attributes": [],
+      "versionCode": 149603,
+      "versionName": "7.28.4",
+      "outputFile": "Signal-Android-play-prod-armeabi-v7a-release-7.28.4.apk"
+    }
+  ],
+  "elementType": "File",
+  "baselineProfiles": [
+    {
+      "minApi": 28,
+      "maxApi": 30,
+      "baselineProfiles": [
+        "baselineProfiles/1/Signal-Android-play-prod-universal-release-7.28.4.dm",
+        "baselineProfiles/1/Signal-Android-play-prod-x86_64-release-7.28.4.dm",
+        "baselineProfiles/1/Signal-Android-play-prod-x86-release-7.28.4.dm",
+        "baselineProfiles/1/Signal-Android-play-prod-arm64-v8a-release-7.28.4.dm",
+        "baselineProfiles/1/Signal-Android-play-prod-armeabi-v7a-release-7.28.4.dm"
+      ]
+    },
+    {
+      "minApi": 31,
+      "maxApi": 2147483647,
+      "baselineProfiles": [
+        "baselineProfiles/0/Signal-Android-play-prod-universal-release-7.28.4.dm",
+        "baselineProfiles/0/Signal-Android-play-prod-x86_64-release-7.28.4.dm",
+        "baselineProfiles/0/Signal-Android-play-prod-x86-release-7.28.4.dm",
+        "baselineProfiles/0/Signal-Android-play-prod-arm64-v8a-release-7.28.4.dm",
+        "baselineProfiles/0/Signal-Android-play-prod-armeabi-v7a-release-7.28.4.dm"
+      ]
+    }
+  ],
+  "minSdkVersionForDexing": 21
+}
