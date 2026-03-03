@@ -177,6 +177,7 @@ android {
   }
 
   defaultConfig {
+    applicationId = "com.smarttmessenger.app"
     versionCode = (canonicalVersionCode * maxHotfixVersions) + currentHotfixVersion
     versionName = canonicalVersionName
 
