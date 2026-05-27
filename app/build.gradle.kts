@@ -23,7 +23,7 @@ apply(from = "static-ips.gradle.kts")
 
 val canonicalVersionCode = 1568
 val canonicalVersionName = "7.51.2"
-val currentHotfixVersion = 0
+val currentHotfixVersion = 1
 val maxHotfixVersions = 100
 
 val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
@@ -196,7 +196,7 @@ android {
     buildConfigField("String", "STORAGE_URL", "\"https://storage.signal.org\"")
     buildConfigField("String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\"")
     buildConfigField("String", "SIGNAL_CDN2_URL", "\"https://cdn2.signal.org\"")
-    buildConfigField("String", "SIGNAL_CDN3_URL", "\"https://cdn3.signal.org\"")
+    buildConfigField("String", "SIGNAL_CDN3_URL", "\"https://cdn3.staging.smarttmessenger.com\"")
     buildConfigField("String", "SIGNAL_CDSI_URL", "\"https://cdsi.staging.smarttmessenger.com\"")
     buildConfigField("String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\"")
     buildConfigField("String", "SIGNAL_SVR2_URL", "\"https://svr2.signal.org\"")
@@ -219,10 +219,10 @@ android {
     buildConfigField("String", "SVR2_MRENCLAVE_LEGACY_LEGACY", "\"9314436a9a144992bb3680770ea5fd7934a7ffd29257844a33763a238903d570\"")
     buildConfigField("String", "SVR2_MRENCLAVE_LEGACY", "\"093be9ea32405e85ae28dbb48eb668aebeb7dbe29517b9b86ad4bec4dfe0e6a6\"")
     buildConfigField("String", "SVR2_MRENCLAVE", "\"29cd63c87bea751e3bfd0fbd401279192e2e5c99948b4ee9437eafc4968355fb\"")
-    buildConfigField("String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BSU4ISKqOR/u2t45vkiX7axP5ZcSzGYwkK0v0HcFtNoS\"")
+    buildConfigField("String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BT9a+6LT6PKD4ToFOYSsn4Ep67Bii+Clg9rkIAJDU1k4\"")
     buildConfigField("String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AJbCOtPUcjSGgW7Mci6LmYRjQysUxZj+UyYltCbsK9cmLI+Xc8P+droZF4C0sFs709t76BQFz6SQVvpptuM4UF88/mTEKWs661/WhL9NfotIGN3LpElsDdBqGYX9vYzlVXDx7l/Lx1PND6r8enBKaCplMtJNV7aiH80wQJBokVQXuj9sJeoY51JjAPjifKVY6V3plPLCEmcMx8QGleHctk9Aok4OO5vlJjCL8CcqzpoMzlL8UPYCAZyxlKrnDiOha2Y2DK/pz0a7vbvR1KBqm/Tm9K/DSkrFlEfG1PBYtNsWwFoPfO8L94O2n+X+DTUtyrmuTo3twPJTQHlNowCkMgCSP5a7zctqMcQjCNK9eMf/DrEd/szA6VXPh7XPYAdEcbjvEOyp7MsW2FRPQeroN/2rTpQhpZzcc/gnFzvqHmExNnIzIDCPDqqPhoV2vORlh7rnqPQIJdf/WcpNrogr+XG8LaoCXSsCXBAMFhp/0jTWF68vY1aFjuJvSWGpM5/saOqpex+Nd5hkI329naUL1NGe1wQWSQ5hcbhqiK3/xV4AdOWsIQGhLY7vbQMNgUbAk+7ZVbtZUvFCbvu4b7vG2HhEtYXu+n5hV+/Ie0OmGtpSKLeZS6WCS2FBidHD5g1iZRTkt9AW0cCTC92Fw+ooCBwVerg6XBPo0iBMKqeM/wJLEG0GFcbEhAfNzauS9jJEMlrA0xSJiaVPZVqIpqtIxiySA+nK68t2g1zt4z7lBMe6kBpcEZjspWc7GhcPIeHbLM5mKc1SUa4fw0qacMMpZgCY0VoKsqynFNQ77lO8OtFvElbKyggxT1L+XPP2h/yERlsKhWqGZ6k7SN8IRNCyBFocaAZBTCZptESV0k9A916YM4JL+5NKe6JUAwiGEMtVEQ==\"")
-    buildConfigField("String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"QUhxOWlZK3JNNEgyenloZnNYaUw3U2NEdHVscFFZTU0wc0NzNHluT3A2c2RYTG9uL2ZDT3lwUkZEWkdKZkR6V3ZYVXFyZytDOEg3VjB2aURuQ29FMEQvOFRoNmo3LzhhQWo2UVBOMUZTWGtFbkVGdmViNkpvY1lCenc5U0hBbHZIczdHVXhIUjQ5cFhQQnBZbmdoVkRMMTFtK0ZHVXFIVEYvWXNyUjZNYnRjNXFneTdjZ3F4NVdUWVNxNWdiTFpaMHFmNG5mMHl1YTErSkZad3B2N2ZybFZZbjltZDZyRVRnYWhNMlJXU2tDb1FnVkJlblRFTGgxSUoyYjg2RXB0b0ZTb3BFMTN1RExmcnRFSWx5MVV0OCtzd0xCT2lJazRVS3hGamVCdFFXSTRs\"")
-    buildConfigField("String", "BACKUP_SERVER_PUBLIC_PARAMS", "\"AIkCAPaO/Xws5ieGmWKY5spCjJ/J38WJYuHW3LClS2wDe5XV6EOjMrAHtK7DaaqjOlO/L1FW7kJ/XYs+923aewLE1b5AeLtSItVQL32BmaVMfPfoPKHInwvgl4ltTM+5dhjDkShF3fVW0wu2N1ta9VCCk6yDDhnF1JM3FxjdcvQPCOzvb+J1AvtYHF5nwHRGmsvFo22UijmI6PXU4DdXIwDJ4rNKo1pgTBjcWKlmDKkT3sQS+SUtVCS5BWG4G84+CyfPKS0KJSKCrTgkyTmABdsV98xVk/v92+9fHH9nnjkC8yzNfQEIc9l2DCY83mP29/24XQYT+FCjduXbwSf05AR1QLpf0/7MSvTFvRMI2dzGQBN4kLiXlPbljiywt5xgBIsGwoQV8sbCi8ioBS2JItFZZ4vSD0gTfuZpHvax5uAJFBQdUFELDWr3QrHHHDgjai9uie/d5J/2EpANG4nXKQLiLIwkLtJeYkN2zgtBJjvtix/DIIQvksV+HzMPNBnyAA==\"")
+    buildConfigField("String", "GENERIC_SERVER_PUBLIC_PARAMS", "\"AHq9iY+rM4H2zyhfsXiL7ScDtulpQYMM0sCs4ynOp6sdXLon/fCOypRFDZGJfDzWvXUqrg+C8H7V0viDnCoE0D/8Th6j7/8aAj6QPN1FSXkEnEFveb6JocYBzw9SHAlvHs7GUxHR49pXPBpYnghVDL11m+FGUqHTF/YsrR6Mbtc5qgy7cgqx5WTYSq5gbLZZ0qf4nf0yua1+JFZwpv7frlVYn9md6rETgahM2RWSkCoQgVBenTELh1IJ2b86EptoFSopE13uDLfrtEIly1Ut8+swLBOiIk4UKxFjeBtQWI4l\"")
+    buildConfigField("String", "BACKUP_SERVER_PUBLIC_PARAMS", "\"AMr+n74tOJJ9fpKsLUyp9ga3Lt0tGLBMrDrqCpyyB98cXGaP1S5p81yWF9L+KsvDKkW7uF8PPUrIG9fre72/HQ9QNiOM6bkcG5hFzCvAnlkLjsLtbT9HzlSVygA9fvWdCooPSNxnn2vtXfI8WIzDOiu+VdWFD0UpU0ZH9/iBV2gWks//2Nktupl6H370Aw6t9yMBIpaznWtJ2bi4UTLwxVuwcVJw0+tIKbLT15MACMN+UrNvTRAsIp700m8okel2UO5iPnMa5LCw9t86hVo1Xu7qO7clUWkPSSSsxB4Dpvt3\"")
     buildConfigField("String[]", "LANGUAGES", "new String[]{ ${languageList().map { "\"$it\"" }.joinToString(separator = ", ")} }")
     buildConfigField("int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode")
     buildConfigField("String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\"")
