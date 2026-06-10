@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_smartt_setup_graph"
+    app:startDestination="@id/editWindowScheduleFragment">
+
+    <!-- Create wizard order (Figma): schedule → allowed messages → set expectations → name → created.
+         All steps share an activity-scoped draft (CommunicationWindowDraftViewModel); the window is
+         created on the server only on the final "Create" button. The hosting Activity sets the start
+         destination: editWindowScheduleFragment to create, windowDetailsFragment to view/edit. -->
+
+    <fragment
+        android:id="@+id/editWindowScheduleFragment"
+        android:name="com.smarttmessenger.communicationwindow.ui.EditCommunicationWindowScheduleFragment"
+        android:label="Add a schedule">
+        <action
+            android:id="@+id/action_editWindowScheduleFragment_to_addExceptionContactsFragment"
+            app:destination="@id/addExceptionContactsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addExceptionContactsFragment"
+        android:name="com.smarttmessenger.communicationwindow.ui.AddWindowExceptionContactsFragment"
+        android:label="Allowed messages">
+        <action
+            android:id="@+id/action_addExceptionContactsFragment_to_setExpectationsFragment"
+            app:destination="@id/setExpectationsFragment" />
+        <action
+            android:id="@+id/action_addExceptionContactsFragment_to_selectWindowContactsFragment"
+            app:destination="@id/selectWindowContactsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/selectWindowContactsFragment"
+        android:name="com.smarttmessenger.communicationwindow.ui.SelectWindowContactsFragment"
+        android:label="Allowed contacts">
+        <!-- windowId null = create wizard (writes selection to the draft); non-null = edit that
+             window's exception contacts directly (local-first), mirroring NP's SelectRecipientsFragment. -->
+        <argument
+            android:name="windowId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="currentSelection"
+            android:defaultValue="@null"
+            app:argType="org.thoughtcrime.securesms.recipients.RecipientId[]"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/setExpectationsFragment"
+        android:name="com.smarttmessenger.communicationwindow.ui.SetWindowExpectationsFragment"
+        android:label="Set expectations">
+        <action
+            android:id="@+id/action_setExpectationsFragment_to_editWindowNameFragment"
+            app:destination="@id/editWindowNameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editWindowNameFragment"
+        android:name="com.smarttmessenger.communicationwindow.ui.EditCommunicationWindowNameFragment"
+        android:label="Name your window">
+        <!-- Create-vs-edit is driven by this arg (mirrors EditNotificationProfileFragment's profileId):
+             null = create (final wizard step, uses the draft); non-null = edit that window's name/emoji. -->
+        <argument
+            android:name="windowId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_editWindowNameFragment_to_windowCreatedFragment"
+            app:destination="@id/windowCreatedFragment"
+            app:popUpTo="@id/editWindowScheduleFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/windowCreatedFragment"
+        android:name="com.smarttmessenger.communicationwindow.ui.CommunicationWindowCreatedFragment"
+        android:label="Window ready">
+        <argument
+            android:name="windowId"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_windowCreatedFragment_to_windowDetailsFragment"
+            app:destination="@id/windowDetailsFragment"
+            app:popUpTo="@id/windowCreatedFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/windowDetailsFragment"
+        android:name="com.smarttmessenger.communicationwindow.ui.CommunicationWindowDetailsFragment"
+        android:label="Window">
+        <argument
+            android:name="windowId"
+            app:argType="string" />
+        <!-- Edit a single section: detail loads the window into the draft, then navigates here. -->
+        <action
+            android:id="@+id/action_windowDetailsFragment_to_editWindowScheduleFragment"
+            app:destination="@id/editWindowScheduleFragment" />
+        <action
+            android:id="@+id/action_windowDetailsFragment_to_addExceptionContactsFragment"
+            app:destination="@id/addExceptionContactsFragment" />
+        <!-- "Add people or groups" on the detail goes straight to the picker (like NP detail), seeded
+             with the window's current exception contacts; the picker saves directly by windowId. -->
+        <action
+            android:id="@+id/action_windowDetailsFragment_to_selectWindowContactsFragment"
+            app:destination="@id/selectWindowContactsFragment" />
+        <action
+            android:id="@+id/action_windowDetailsFragment_to_setExpectationsFragment"
+            app:destination="@id/setExpectationsFragment" />
+        <action
+            android:id="@+id/action_windowDetailsFragment_to_editWindowNameFragment"
+            app:destination="@id/editWindowNameFragment" />
+    </fragment>
+
+</navigation>

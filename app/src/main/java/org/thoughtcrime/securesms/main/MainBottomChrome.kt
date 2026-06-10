@@ -51,6 +51,7 @@ interface MainBottomChromeCallback : MainFloatingActionButtonsCallback {
     override fun onNewChatClick() = Unit
     override fun onNewCallClick() = Unit
     override fun onCameraClick(destination: MainNavigationListLocation) = Unit
+    override fun onCommunicationWindowClick() = Unit // [Smartt]
     override fun onMegaphoneVisible(megaphone: Megaphone) = Unit
     override fun onSnackbarDismissed() = Unit
   }

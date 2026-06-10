@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_edit_window"
+        android:icon="@drawable/symbol_edit_24"
+        android:title="@string/CommunicationWindow__name_your_window"
+        app:showAsAction="always" />
+</menu>

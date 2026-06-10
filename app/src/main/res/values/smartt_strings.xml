@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Add a schedule screen -->
+    <string name="CommunicationWindow__add_a_schedule">Add a schedule</string>
+    <string name="CommunicationWindow__add_a_schedule_description">Choose when to close your communication window. Incoming messages will be delivered once it\'s open again.</string>
+    <string name="CommunicationWindow__schedule">Schedule</string>
+    <string name="CommunicationWindow__start">Start</string>
+    <string name="CommunicationWindow__end">End</string>
+    <string name="CommunicationWindow__add_another_schedule">Add another schedule</string>
+    <string name="CommunicationWindow__next">Next</string>
+    <string name="CommunicationWindow__schedule_must_have_at_least_one_day">Select at least one day</string>
+    <string name="CommunicationWindow__monday_first_letter">M</string>
+    <string name="CommunicationWindow__tuesday_first_letter">T</string>
+    <string name="CommunicationWindow__wednesday_first_letter">W</string>
+    <string name="CommunicationWindow__thursday_first_letter">T</string>
+    <string name="CommunicationWindow__friday_first_letter">F</string>
+    <string name="CommunicationWindow__saturday_first_letter">S</string>
+    <string name="CommunicationWindow__sunday_first_letter">S</string>
+
+    <!-- Allowed messages screen -->
+    <string name="CommunicationWindow__allowed_messages">Allowed messages</string>
+    <string name="CommunicationWindow__allowed_messages_description">Choose who can reach you while your communication window is closed.</string>
+    <string name="CommunicationWindow__exception_contacts">Exception contacts</string>
+    <string name="CommunicationWindow__add_people_or_groups">Add people or groups</string>
+    <string name="CommunicationWindow__exception_words">Exception words</string>
+    <string name="CommunicationWindow__add_words">Add words</string>
+    <string name="CommunicationWindow__allowed_calls">Allowed calls</string>
+    <string name="CommunicationWindow__from_exception_contacts">From exception contacts</string>
+    <string name="CommunicationWindow__from_all_contacts">From all contacts</string>
+    <string name="CommunicationWindow__allowed_contacts">Allowed contacts</string>
+
+    <!-- Set expectations screen -->
+    <string name="CommunicationWindow__set_expectations">Set expectations</string>
+    <string name="CommunicationWindow__set_expectations_description">Let your contacts know when you usually check and reply to messages.</string>
+    <string name="CommunicationWindow__check_frequency">Check frequency</string>
+    <string name="CommunicationWindow__usual_reply_time">Usual reply time</string>
+    <string name="CommunicationWindow__personal_note">Personal note</string>
+    <string name="CommunicationWindow__personal_note_hint">Focused on my work. Just call me for emergencies.</string>
+    <string name="CommunicationWindow__every_few_minutes">Every few minutes</string>
+    <string name="CommunicationWindow__once_an_hour">Once an hour</string>
+    <string name="CommunicationWindow__every_few_hours">Every few hours</string>
+    <string name="CommunicationWindow__once_a_day">Once a day</string>
+    <string name="CommunicationWindow__within_minutes">Within minutes</string>
+    <string name="CommunicationWindow__within_an_hour">Within an hour</string>
+    <string name="CommunicationWindow__in_the_afternoon">In the afternoon</string>
+    <string name="CommunicationWindow__in_the_evening">In the evening</string>
+    <string name="CommunicationWindow__next_day">Next day</string>
+    <string name="CommunicationWindow__next_business_day">Next business day</string>
+
+    <!-- Name window screen -->
+    <string name="CommunicationWindow__name_your_window">Name your window</string>
+    <string name="CommunicationWindow__window_name">Window name</string>
+    <string name="CommunicationWindow__create">Create</string>
+    <string name="CommunicationWindow__window_must_have_a_name">Please enter a name</string>
+    <string name="CommunicationWindow__work">Work</string>
+    <string name="CommunicationWindow__sleep">Sleep</string>
+    <string name="CommunicationWindow__study">Study</string>
+    <string name="CommunicationWindow__family">Family</string>
+    <string name="CommunicationWindow__weekend">Weekend</string>
+    <string name="CommunicationWindow__holidays">Holidays</string>
+
+    <!-- Window created screen -->
+    <string name="CommunicationWindow__window_created">Your communication\nwindow is ready</string>
+    <string name="CommunicationWindow__done">Done</string>
+    <string name="CommunicationWindow__created_tip_cloud">When you see the purple cloud in the top bar, your communication window is closed.</string>
+    <string name="CommunicationWindow__created_tip_shortcut">You can turn your window on or off from the shortcut in your chat list.</string>
+    <string name="CommunicationWindow__created_tip_schedule">Choose when it opens and closes automatically in settings.</string>
+
+    <!-- Window detail screen -->
+    <string name="CommunicationWindow__delete_window">Delete communication window</string>
+    <string name="CommunicationWindow__delete_window_confirm_title">Delete communication window?</string>
+    <string name="CommunicationWindow__delete_window_confirm_message">This action cannot be undone.</string>
+    <string name="CommunicationWindow__delete">Delete</string>
+    <string name="CommunicationWindow__cancel">Cancel</string>
+    <string name="CommunicationWindow__edit_schedule">Schedule</string>
+    <string name="CommunicationWindow__edit_exceptions">Exception contacts &amp; calls</string>
+    <string name="CommunicationWindow__s_removed">%1$s removed</string>
+    <string name="CommunicationWindow__undo">Undo</string>
+    <string name="CommunicationWindow__edit_expectations">Check frequency &amp; reply time</string>
+
+    <!-- Bottom sheet -->
+    <string name="CommunicationWindow__new_communication_window">New communication window</string>
+    <string name="CommunicationWindow__on">On</string>
+    <string name="CommunicationWindow__off">Off</string>
+    <string name="CommunicationWindow__s_until_s">%1$s until %2$s</string>
+    <string name="CommunicationWindow__every_day">Every day</string>
+</resources>

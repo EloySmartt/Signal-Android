@@ -1,0 +1,28 @@
+package com.smarttmessenger.communicationwindow.model
+
+import java.time.ZoneId
+import java.time.ZonedDateTime
+
+data class CommunicationWindow(
+  val windowId: String = "",
+  val name: String = "",
+  val emoji: String = "",
+  val enabled: Boolean = true,
+  val schedules: List<CommunicationWindowSchedule> = emptyList(),
+  val exceptionContacts: Set<String> = emptySet(),
+  val allowCallsFromExceptions: Boolean = true,
+  val allowCallsFromAll: Boolean = true,
+  val expectations: WindowExpectations = WindowExpectations()
+) {
+  fun isCurrentlyActive(timezone: ZoneId = ZoneId.systemDefault()): Boolean {
+    if (!enabled) return false
+    val now = ZonedDateTime.now(timezone)
+    return schedules.any { it.isCurrentlyActive(now) }
+  }
+
+  fun activeSchedule(timezone: ZoneId = ZoneId.systemDefault()): CommunicationWindowSchedule? {
+    if (!enabled) return null
+    val now = ZonedDateTime.now(timezone)
+    return schedules.firstOrNull { it.isCurrentlyActive(now) }
+  }
+}

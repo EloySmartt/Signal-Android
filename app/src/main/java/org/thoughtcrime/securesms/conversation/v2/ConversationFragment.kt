@@ -482,6 +482,10 @@ class ConversationFragment :
 
   private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
 
+  // [Smartt] Communication window banner
+  private var smarttWindowBannerManager: com.smarttmessenger.communicationwindow.ui.banner.SmarttWindowBannerManager? = null
+  // [/Smartt]
+
   private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
     InlineQueryResultsControllerV2(
       this,
@@ -1358,6 +1362,17 @@ class ConversationFragment :
     invalidateOptionsMenu()
 
     updateMessageRequestAcceptedState(!viewModel.hasMessageRequestState)
+
+    // [Smartt] Show communication window banner for sender
+    if (smarttWindowBannerManager == null) {
+      smarttWindowBannerManager = com.smarttmessenger.communicationwindow.ui.banner.SmarttWindowBannerManager(
+        requireContext(),
+        binding.conversationBannerFrame,
+        AppDependencies.smarttCommunicationWindowRepository
+      )
+    }
+    smarttWindowBannerManager?.onRecipientChanged(recipient)
+    // [/Smartt]
   }
 
   @MainThread

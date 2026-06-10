@@ -167,6 +167,17 @@ public class IndividualSendJob extends PushSendJob {
 
       boolean unidentified = deliver(message, originalEditedMessage);
 
+      // [Smartt] Communication window: if server held the message, mark locally and skip markAsSent
+      com.smarttmessenger.communicationwindow.network.SmarttWindowHeldState.HeldInfo smarttHeldInfo =
+          com.smarttmessenger.communicationwindow.network.SmarttWindowHeldState.INSTANCE.get();
+      com.smarttmessenger.communicationwindow.network.SmarttWindowHeldState.INSTANCE.clear();
+      if (smarttHeldInfo != null && smarttHeldInfo.getHeld()) {
+        com.smarttmessenger.communicationwindow.cache.SmarttWindowHeldCache.INSTANCE
+            .markAsHeld(context, messageId, smarttHeldInfo.getWindowOpensAt());
+        return;
+      }
+      // [/Smartt]
+
       database.markAsSent(messageId, true);
       markAttachmentsUploaded(messageId, message);
       database.markUnidentified(messageId, unidentified);

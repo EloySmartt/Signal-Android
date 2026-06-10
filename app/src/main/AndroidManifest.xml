@@ -1146,6 +1146,12 @@
               android:exported="false"
               android:theme="@style/Signal.DayNight.NoActionBar" />
 
+    <!-- [Smartt] Communication windows -->
+    <activity android:name="com.smarttmessenger.communicationwindow.ui.CommunicationWindowsActivity"
+              android:exported="false"
+              android:theme="@style/Signal.DayNight.NoActionBar" />
+    <!-- [/Smartt] -->
+
     <service
         android:enabled="true"
         android:exported="false"

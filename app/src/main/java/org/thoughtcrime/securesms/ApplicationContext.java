@@ -230,6 +230,12 @@ public class ApplicationContext extends Application implements AppForegroundObse
                             .addPostRender(RetryPendingSendsJob::enqueueForAll)
                             .execute();
 
+    // [Smartt] Load held message IDs into memory cache at startup
+    com.smarttmessenger.communicationwindow.cache.SmarttWindowHeldCache.INSTANCE.init(this);
+    // [Smartt] Retry pushing any communication-window changes that were saved locally while offline
+    new com.smarttmessenger.communicationwindow.repository.CommunicationWindowsRepository(this).syncPending();
+    // [/Smartt]
+
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     SignalLocalMetrics.ColdStart.onApplicationCreateFinished();
     Tracer.getInstance().end("Application#onCreate()");

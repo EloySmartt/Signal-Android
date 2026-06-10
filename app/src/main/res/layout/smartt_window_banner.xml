@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F0ECFF"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <!-- Cloud icon -->
+    <ImageView
+        android:id="@+id/smartt_banner_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/smartt_messagestatus_held_24"
+        android:tint="#6B2EE8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Title: "{Name}'s communication window is closed from {start} to {end}" -->
+    <TextView
+        android:id="@+id/smartt_banner_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="#6B2EE8"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/smartt_banner_toggle"
+        app:layout_constraintStart_toEndOf="@id/smartt_banner_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Collapse/expand toggle -->
+    <ImageView
+        android:id="@+id/smartt_banner_toggle"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/symbol_chevron_up_24"
+        android:tint="#6B2EE8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Expandable details section -->
+    <LinearLayout
+        android:id="@+id/smartt_banner_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/smartt_banner_icon"
+        app:layout_constraintTop_toBottomOf="@id/smartt_banner_title">
+
+        <TextView
+            android:id="@+id/smartt_banner_check_frequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/smartt_banner_reply_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <!-- Personal note pill -->
+        <TextView
+            android:id="@+id/smartt_banner_personal_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_rectangle"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textColor="#444444"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -364,6 +364,13 @@ object AppDependencies {
   val signalOkHttpClient: OkHttpClient
     get() = networkModule.signalOkHttpClient
 
+  // [Smartt] Communication windows repository (lazy, constructed on first access)
+  @JvmStatic
+  val smarttCommunicationWindowRepository: com.smarttmessenger.communicationwindow.repository.CommunicationWindowsRepository by lazy {
+    com.smarttmessenger.communicationwindow.repository.CommunicationWindowsRepository(application)
+  }
+  // [/Smartt]
+
   @JvmStatic
   fun resetProtocolStores() {
     networkModule.resetProtocolStores()

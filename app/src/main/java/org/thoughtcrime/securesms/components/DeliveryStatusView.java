@@ -81,6 +81,9 @@ public class DeliveryStatusView extends AppCompatImageView {
         case READ:
           setRead();
           break;
+        case WINDOW_HELD: // [Smartt]
+          setWindowHeld();
+          break;
       }
 
       Parcelable root = stateBundle.getParcelable(ROOT_KEY);
@@ -193,12 +196,25 @@ public class DeliveryStatusView extends AppCompatImageView {
     }
   }
 
+  // [Smartt] Communication window held state
+  public void setWindowHeld() {
+    state = State.WINDOW_HELD;
+    setVisibility(View.VISIBLE);
+    ViewUtil.setPaddingStart(this, horizontalPadding);
+    ViewUtil.setPaddingEnd(this, 0);
+    clearAnimation();
+    setImageResource(R.drawable.smartt_messagestatus_held_24);
+    updateContentDescription();
+  }
+  // [/Smartt]
+
   private enum State {
     NONE(0, -1),
     PENDING(1, R.string.message_details_recipient_header__pending_send),
     SENT(2, R.string.message_details_header_sent),
     DELIVERED(3, R.string.conversation_item_sent__delivered_description),
-    READ(4, R.string.conversation_item_sent__message_read);
+    READ(4, R.string.conversation_item_sent__message_read),
+    WINDOW_HELD(5, -1); // [Smartt]
 
     final int code;
 
