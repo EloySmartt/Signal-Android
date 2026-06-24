@@ -64,4 +64,7 @@
     <color name="safety_number_card_blue">#ff506ECD</color>
 
     <color name="notification_background_ultramarine">#3B45FD</color>
+
+    <!-- Connect WhatsApp feature: brand green used for the WhatsApp glyph tile and primary CTAs. -->
+    <color name="whatsapp_green">#25D366</color>
 </resources>
