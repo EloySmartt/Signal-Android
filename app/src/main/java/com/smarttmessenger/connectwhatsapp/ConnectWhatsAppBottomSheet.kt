@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
-package org.thoughtcrime.securesms.connectwhatsapp
+package com.smarttmessenger.connectwhatsapp
 
 import android.widget.Toast
 import androidx.compose.foundation.Image

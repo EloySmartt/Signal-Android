@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Connect WhatsApp feature: brand green used for the WhatsApp glyph tile and primary CTAs. -->
+    <color name="whatsapp_green">#25D366</color>
+</resources>

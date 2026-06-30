@@ -62,6 +62,8 @@ import com.google.android.material.animation.ArgbEvaluatorCompat;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.smarttmessenger.connectwhatsapp.ConnectWhatsAppBanner;
+import com.smarttmessenger.connectwhatsapp.ConnectWhatsAppBottomSheet;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -87,7 +89,6 @@ import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.CdsPermanentErrorBanner;
 import org.thoughtcrime.securesms.banner.banners.CdsTemporaryErrorBanner;
-import org.thoughtcrime.securesms.banner.banners.ConnectWhatsAppBanner;
 import org.thoughtcrime.securesms.banner.banners.DeprecatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.DozeBanner;
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner;
@@ -108,7 +109,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Un
 import org.thoughtcrime.securesms.components.spoiler.SpoilerAnnotation;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
-import org.thoughtcrime.securesms.connectwhatsapp.ConnectWhatsAppBottomSheet;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
