@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_smartt_mail_graph"
+    app:startDestination="@id/connectMailAccountFragment">
+
+    <!-- Connect wizard (mirrors smartt_setup_navigation): provider -> delivery window -> ready ->
+         landing. MailActivity sets the start destination: connectMailAccountFragment to connect,
+         mailLandingFragment when an account already exists. All steps share an activity-scoped
+         draft (MailDraftViewModel); the account is persisted on the schedule step's button. -->
+
+    <fragment
+        android:id="@+id/connectMailAccountFragment"
+        android:name="com.smarttmessenger.mail.ui.ConnectMailAccountFragment"
+        android:label="Connect email">
+        <action
+            android:id="@+id/action_connectMailAccountFragment_to_editMailDeliveryScheduleFragment"
+            app:destination="@id/editMailDeliveryScheduleFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editMailDeliveryScheduleFragment"
+        android:name="com.smarttmessenger.mail.ui.EditMailDeliveryScheduleFragment"
+        android:label="Delivery window">
+        <action
+            android:id="@+id/action_editMailDeliveryScheduleFragment_to_mailReadyFragment"
+            app:destination="@id/mailReadyFragment"
+            app:popUpTo="@id/connectMailAccountFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mailReadyFragment"
+        android:name="com.smarttmessenger.mail.ui.MailReadyFragment"
+        android:label="Mail ready">
+        <action
+            android:id="@+id/action_mailReadyFragment_to_mailLandingFragment"
+            app:destination="@id/mailLandingFragment"
+            app:popUpTo="@id/mailReadyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mailLandingFragment"
+        android:name="com.smarttmessenger.mail.ui.MailLandingFragment"
+        android:label="Mail">
+        <action
+            android:id="@+id/action_mailLandingFragment_to_connectMailAccountFragment"
+            app:destination="@id/connectMailAccountFragment" />
+        <action
+            android:id="@+id/action_mailLandingFragment_to_editMailDeliveryScheduleFragment"
+            app:destination="@id/editMailDeliveryScheduleFragment" />
+    </fragment>
+
+</navigation>

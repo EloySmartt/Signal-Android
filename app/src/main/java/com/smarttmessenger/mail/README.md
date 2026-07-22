@@ -21,7 +21,12 @@ repository/
   MailRepository.kt        local-first, RxJava3 — mirrors CommunicationWindowsRepository
 viewmodel/
   MailLandingViewModel.kt  reactive LiveData state (delivered list + waiting count)
-ui/                        (to add: MailLandingFragment, MailActivity, wizard fragments)
+ui/
+  MailActivity.kt          hosts R.navigation.smartt_mail_navigation (copy of CommunicationWindowsActivity)
+  ConnectMailAccountFragment.kt   provider picker (DSLSettings; TODO real OAuth on click)
+  EditMailDeliveryScheduleFragment.kt  copy of EditCommunicationWindowScheduleFragment (same layout)
+  MailReadyFragment.kt     copy of CommunicationWindowCreatedFragment (same layout)
+  MailLandingFragment.kt   the future Mail tab content (DSLSettings)
 ```
 
 The repository is backed by in-memory lists on purpose, so the UI can be built and demoed before the
@@ -52,13 +57,14 @@ DB / network / OAuth are wired.
      (`/me/mailFolders/inbox/messages`). Scope `Mail.Read`.
    Implement behind `MailRepository.sync()`; store new messages `held = true`.
 
-3. **UI (mirror `DSLSettingsFragment` style).**
-   - `MailLandingFragment : DSLSettingsFragment(layoutId = R.layout.mail_landing_fragment)` — the tab
-     content: delivery banner ("Next delivery … · N waiting" + Deliver now), connected/disconnected
-     states, message list.
-   - `MailActivity : PassphraseRequiredActivity` + `R.navigation.mail_navigation` for the
-     connect + schedule wizard, mirroring `CommunicationWindowsActivity`.
-   - Strings in `res/values/strings.xml`; icon `res/raw/mail_28` (mirror `stories_28`).
+3. **UI — DONE (this commit).** Wizard: connect -> delivery window -> ready -> landing, in
+   `R.navigation.smartt_mail_navigation`. The schedule + ready screens reuse the author's exact
+   layouts (`fragment_edit_notification_profile_schedule`, `fragment_notification_profile_created`),
+   so they are pixel-identical to the communication-window wizard. Strings live in the new
+   `res/values/smartt_mail_strings.xml`. Launch with `MailActivity.newIntentForConnect(context)`.
+   Still to do here: real OAuth in `ConnectMailAccountFragment.pick()` (currently records a demo
+   address), a richer message list row (currently `textPref`), and a `res/raw/mail_28` Lottie icon
+   for the tab (mirror `stories_28`).
 
 4. **Tab swap — Stories → Mail (the only destructive step; do in its own reviewed commit).**
    All in `app/src/main/java/org/thoughtcrime/securesms/main/`:

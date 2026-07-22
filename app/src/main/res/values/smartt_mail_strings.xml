@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mail feature strings. Separate file so the original smartt_strings.xml is never modified. -->
+<resources>
+  <string name="Mail__mail">Mail</string>
+  <string name="ConversationListTabs__mail">Mail</string>
+
+  <!-- Connect -->
+  <string name="Mail__connect_email">Connect email</string>
+  <string name="Mail__choose_a_provider">Choose a provider</string>
+  <string name="Mail__gmail">Gmail</string>
+  <string name="Mail__gmail_summary">Google Workspace and personal accounts</string>
+  <string name="Mail__outlook">Outlook</string>
+  <string name="Mail__outlook_summary">Outlook, Microsoft 365, Hotmail</string>
+  <string name="Mail__connect_privacy_note">Sign-in happens on your provider\'s own page. Smartt requests read-only access and never sees your password.</string>
+
+  <!-- Delivery window -->
+  <string name="Mail__delivery_window">Delivery window</string>
+  <string name="Mail__delivery_window_description">Mail is fetched quietly in the background and delivered only while this window is open, so your inbox can\'t interrupt your day.</string>
+  <string name="Mail__edit_delivery_window">Edit delivery window</string>
+
+  <!-- Ready -->
+  <string name="Mail__mail_ready">Your mail delivery window is ready</string>
+  <string name="Mail__ready_tip_held">New mail is held out of sight while the window is closed</string>
+  <string name="Mail__ready_tip_deliver">Everything arrives at once when the window opens</string>
+
+  <!-- Landing -->
+  <string name="Mail__inbox">Inbox</string>
+  <string name="Mail__inbox_empty">No delivered mail yet</string>
+  <string name="Mail__from_s">From %1$s</string>
+  <string name="Mail__deliver_now">Deliver now</string>
+  <string name="Mail__delivery_realtime">Real-time delivery</string>
+  <string name="Mail__window_open">Delivery window open</string>
+  <string name="Mail__window_closed">Window closed · %1$d waiting</string>
+  <string name="Mail__no_account">No email connected</string>
+  <string name="Mail__no_account_summary">Connect Gmail or Outlook to receive mail on your schedule.</string>
+
+  <plurals name="Mail__d_messages_waiting">
+    <item quantity="one">%1$d message waiting</item>
+    <item quantity="other">%1$d messages waiting</item>
+  </plurals>
+</resources>

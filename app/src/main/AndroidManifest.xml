@@ -1152,6 +1152,12 @@
               android:theme="@style/Signal.DayNight.NoActionBar" />
     <!-- [/Smartt] -->
 
+    <!-- [Smartt] Mail (mail-window-v1) -->
+    <activity android:name="com.smarttmessenger.mail.ui.MailActivity"
+              android:exported="false"
+              android:theme="@style/Signal.DayNight.NoActionBar" />
+    <!-- [/Smartt] -->
+
     <service
         android:enabled="true"
         android:exported="false"
