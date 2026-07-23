@@ -85,3 +85,20 @@ DB / network / OAuth are wired.
 This was written to match the author's conventions but **has not been compiled here** (no Android
 SDK/Gradle build in this environment). Build in Android Studio; the model/repository/viewmodel layer
 only depends on RxJava3 + androidx.lifecycle + `org.signal.core.util.logging.Log`.
+
+## Tab swap — Stories → Mail (done in mail-window-v1)
+
+The Mail tab now occupies the old Stories slot. Minimal + isolated so the enum name stays `STORIES`
+(dozens of references keep compiling); only its meaning changes:
+
+- `main/MainNavigation.kt` — the `STORIES` enum entry now uses `R.string.ConversationListTabs__mail`.
+- `MainActivity.kt` — the tab content `when` renders `MailLandingFragment` instead of `StoriesLandingFragment`.
+- `main/MainNavigationViewModel.kt` — `isStoriesFeatureEnabled = true`, so the tab is always shown.
+
+Residual cosmetic TODOs (intentionally not touched to keep the swap low-risk; do in a follow-up):
+- Tab icon still uses `R.raw.stories_28` — ship `res/raw/mail_28.json` (envelope Lottie) and swap it in.
+- `MainFloatingActionButtons.kt` STORIES branch still shows the camera FAB — rewire its `onClick` to
+  `MailActivity.newIntentForConnect(context)` and use `R.drawable.symbol_at_24`.
+- `MainToolbar.kt` still shows Stories overflow items for this destination — replace with mail actions.
+
+Reverting the swap = revert this one commit; the additive `mail` package stays intact.

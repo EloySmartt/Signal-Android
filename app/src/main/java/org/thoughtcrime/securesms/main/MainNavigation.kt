@@ -77,7 +77,10 @@ enum class MainNavigationListLocation(
     icon = R.raw.calls_28
   ),
   STORIES(
-    label = R.string.ConversationListTabs__stories,
+    // [mail-window-v1] Repurposed as the Mail tab. Enum name kept as STORIES so the many existing
+    // references keep compiling; only the label + tab content (MainActivity) change.
+    // TODO(mail): ship a res/raw/mail_28.json Lottie and use it here instead of stories_28.
+    label = R.string.ConversationListTabs__mail,
     icon = R.raw.stories_28
   )
 }

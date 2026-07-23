@@ -168,7 +168,7 @@ class MainNavigationViewModel(
   }
 
   fun refreshNavigationBarState() {
-    internalMainNavigationState.update { it.copy(compact = SignalStore.settings.useCompactNavigationBar, isStoriesFeatureEnabled = Stories.isFeatureEnabled()) }
+    internalMainNavigationState.update { it.copy(compact = SignalStore.settings.useCompactNavigationBar, isStoriesFeatureEnabled = true /* [mail-window-v1] Mail tab always shown */) }
   }
 
   fun getNotificationProfiles(): Flow<List<NotificationProfile>> {

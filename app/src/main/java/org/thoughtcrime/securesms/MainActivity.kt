@@ -128,6 +128,7 @@ import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
+import com.smarttmessenger.mail.ui.MailLandingFragment
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.AppStartup
@@ -387,7 +388,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
                   MainNavigationListLocation.STORIES -> {
                     val state = key(destination) { rememberFragmentState() }
                     AndroidFragment(
-                      clazz = StoriesLandingFragment::class.java,
+                      clazz = MailLandingFragment::class.java, // [mail-window-v1] Mail tab content
                       fragmentState = state,
                       modifier = Modifier.fillMaxSize()
                     )
