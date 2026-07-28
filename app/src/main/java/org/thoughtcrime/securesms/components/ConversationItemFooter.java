@@ -387,17 +387,7 @@ public class ConversationItemFooter extends ConstraintLayout {
       return;
     }
 
-    // [Smartt] Communication window held state — auto-clears when Signal marks message delivered
-    if (messageRecord.isOutgoing() &&
-        com.smarttmessenger.communicationwindow.cache.SmarttWindowHeldCache.INSTANCE.isHeld(messageRecord.getId())) {
-      if (messageRecord.isDelivered() || messageRecord.hasReadReceipt()) {
-        com.smarttmessenger.communicationwindow.cache.SmarttWindowHeldCache.INSTANCE.clearHeld(getContext(), messageRecord.getId());
-      } else {
-        deliveryStatusView.setWindowHeld();
-        return;
-      }
-    }
-    // [/Smartt]
+    if (com.smarttmessenger.communicationwindow.cache.SmarttWindowHeldCache.INSTANCE.applyHeldStatus(getContext(), messageRecord, deliveryStatusView)) return; // [Smartt] window-held cloud icon
 
     if (onlyShowSendingStatus) {
       if (messageRecord.isOutgoing() && messageRecord.isPending()) {

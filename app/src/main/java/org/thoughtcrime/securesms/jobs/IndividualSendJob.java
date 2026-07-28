@@ -73,6 +73,10 @@ public class IndividualSendJob extends PushSendJob {
 
   private final long messageId;
 
+  // [Smartt] Communication window: held outcome captured from the send result during deliver().
+  private boolean smarttWindowHeld;
+  private long    smarttWindowOpensAt;
+
   public IndividualSendJob(long messageId, @NonNull Recipient recipient, boolean hasMedia, boolean isScheduledSend) {
     this(new Parameters.Builder()
              .setQueue(isScheduledSend ? recipient.getId().toScheduledSendQueueKey() : recipient.getId().toQueueKey(hasMedia))
@@ -167,14 +171,12 @@ public class IndividualSendJob extends PushSendJob {
 
       boolean unidentified = deliver(message, originalEditedMessage);
 
-      // [Smartt] Communication window: if server held the message, mark locally and skip markAsSent
-      com.smarttmessenger.communicationwindow.network.SmarttWindowHeldState.HeldInfo smarttHeldInfo =
-          com.smarttmessenger.communicationwindow.network.SmarttWindowHeldState.INSTANCE.get();
-      com.smarttmessenger.communicationwindow.network.SmarttWindowHeldState.INSTANCE.clear();
-      if (smarttHeldInfo != null && smarttHeldInfo.getHeld()) {
+      // [Smartt] Communication window: if the server held the message, remember it so the UI shows the
+      // cloud icon. The message is still marked as sent below — the server accepted it and will deliver
+      // it when the window opens; leaving it pending would make RetryPendingSendsJob re-send it.
+      if (smarttWindowHeld) {
         com.smarttmessenger.communicationwindow.cache.SmarttWindowHeldCache.INSTANCE
-            .markAsHeld(context, messageId, smarttHeldInfo.getWindowOpensAt());
-        return;
+            .markAsHeld(context, messageId, smarttWindowOpensAt);
       }
       // [/Smartt]
 
@@ -348,6 +350,7 @@ public class IndividualSendJob extends PushSendJob {
                                                                    originalEditedMessage.getDateSent());
           SignalDatabase.messageLog().insertIfPossible(messageRecipient.getId(), message.getSentTimeMillis(), result, ContentHint.RESENDABLE, new MessageId(messageId), false);
 
+          captureSmarttWindowHeld(result); // [Smartt]
           return result.getSuccess().isUnidentified();
         }
       } else if (Util.equals(SignalStore.account().getAci(), address.getServiceId())) {
@@ -370,6 +373,7 @@ public class IndividualSendJob extends PushSendJob {
           SignalDatabase.pendingPniSignatureMessages().insertIfNecessary(messageRecipient.getId(), message.getSentTimeMillis(), result);
         }
 
+        captureSmarttWindowHeld(result); // [Smartt]
         return result.getSuccess().isUnidentified();
       }
     } catch (FileNotFoundException e) {
@@ -377,6 +381,14 @@ public class IndividualSendJob extends PushSendJob {
       throw new UndeliverableMessageException(e);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
+    }
+  }
+
+  // [Smartt] Communication window: capture the held outcome from a successful send result.
+  private void captureSmarttWindowHeld(SendMessageResult result) {
+    if (result.isSuccess() && result.getSuccess().isCommunicationWindowHeld()) {
+      smarttWindowHeld    = true;
+      smarttWindowOpensAt = result.getSuccess().getWindowOpensAt();
     }
   }
 

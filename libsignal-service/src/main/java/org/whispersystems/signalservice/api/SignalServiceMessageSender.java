@@ -1940,7 +1940,7 @@ public class SignalServiceMessageSender {
 
         try {
           SendMessageResponse response = NetworkResultUtil.toMessageSendLegacy(messages.getDestination(), messageApi.sendMessage(messages, sealedSenderAccess, story));
-          return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
+          return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent(), response.isCommunicationWindowHeld(), response.getWindowOpensAt()); // [Smartt] carry held-window outcome
         } catch (AuthorizationFailedException |
                  UnregisteredUserException |
                  MismatchedDevicesException |
@@ -1979,7 +1979,7 @@ public class SignalServiceMessageSender {
 
         SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
 
-        return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
+        return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent(), response.isCommunicationWindowHeld(), response.getWindowOpensAt()); // [Smartt] carry held-window outcome
 
       } catch (InvalidKeyException ike) {
         Log.w(TAG, ike);
@@ -2156,7 +2156,9 @@ public class SignalServiceMessageSender {
                 response.sentUnidentified(),
                 response.getNeedsSync() || aciStore.isMultiDevice(),
                 System.currentTimeMillis() - startTime,
-                content.getContent()
+                content.getContent(),
+                response.isCommunicationWindowHeld(), // [Smartt] carry held-window outcome
+                response.getWindowOpensAt()           // [Smartt]
             );
             return Single.just(result);
           } catch (IOException throwable) {
@@ -2199,7 +2201,9 @@ public class SignalServiceMessageSender {
                   response.sentUnidentified(),
                   response.getNeedsSync() || aciStore.isMultiDevice(),
                   System.currentTimeMillis() - startTime,
-                  content.getContent()
+                  content.getContent(),
+                  response.isCommunicationWindowHeld(), // [Smartt] carry held-window outcome
+                  response.getWindowOpensAt()           // [Smartt]
               );
             }).subscribeOn(scheduler);
           }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.smarttmessenger.communicationwindow.repository.CommunicationWindowsRepository
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
@@ -51,5 +52,19 @@ class SmarttWindowBannerManager(
   fun clear() {
     metadataDisposable?.dispose()
     bannerView.hide()
+  }
+
+  companion object {
+    /**
+     * Creates the manager on first call (reusing [existing] afterwards) and refreshes the banner
+     * for [recipient]. Keeps the lazy-construction logic here so the ConversationFragment hook
+     * stays a single line.
+     */
+    @JvmStatic
+    fun update(existing: SmarttWindowBannerManager?, context: Context, container: ViewGroup, recipient: Recipient): SmarttWindowBannerManager {
+      val manager = existing ?: SmarttWindowBannerManager(context, container, AppDependencies.smarttCommunicationWindowRepository)
+      manager.onRecipientChanged(recipient)
+      return manager
+    }
   }
 }

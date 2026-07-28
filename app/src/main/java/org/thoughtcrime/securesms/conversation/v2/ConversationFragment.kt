@@ -1363,16 +1363,7 @@ class ConversationFragment :
 
     updateMessageRequestAcceptedState(!viewModel.hasMessageRequestState)
 
-    // [Smartt] Show communication window banner for sender
-    if (smarttWindowBannerManager == null) {
-      smarttWindowBannerManager = com.smarttmessenger.communicationwindow.ui.banner.SmarttWindowBannerManager(
-        requireContext(),
-        binding.conversationBannerFrame,
-        AppDependencies.smarttCommunicationWindowRepository
-      )
-    }
-    smarttWindowBannerManager?.onRecipientChanged(recipient)
-    // [/Smartt]
+    smarttWindowBannerManager = com.smarttmessenger.communicationwindow.ui.banner.SmarttWindowBannerManager.update(smarttWindowBannerManager, requireContext(), binding.conversationBannerFrame, recipient) // [Smartt] sender-side window banner
   }
 
   @MainThread

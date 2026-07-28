@@ -221,7 +221,6 @@ class NetworkDependenciesModule(
   val okHttpClient: OkHttpClient by lazy {
     OkHttpClient.Builder()
       .addInterceptor(StandardUserAgentInterceptor())
-      .addInterceptor(com.smarttmessenger.communicationwindow.network.SmarttWindowHeldInterceptor()) // [Smartt]
       .dns(SignalServiceNetworkAccess.DNS)
       .build()
   }
