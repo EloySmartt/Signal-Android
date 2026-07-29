@@ -158,4 +158,409 @@
     <string name="ConnectWhatsApp__back_content_description">Back</string>
     <!-- Accessibility description for the icon showing the app linking with WhatsApp -->
     <string name="ConnectWhatsApp__link_content_description">Linking with WhatsApp</string>
+
+    <!-- Shared Smartt strings -->
+    <!-- Accessibility description for the back button in a Smartt screen toolbar -->
+    <string name="Smartt__back_content_description">Back</string>
+
+    <!-- Upgrade feature: overflow menu entry and screen title -->
+    <string name="SmarttUpgrade__menu_item">Upgrade Smartt</string>
+    <!-- Title of the hero block on the upgrade screen -->
+    <string name="SmarttUpgrade_hero__title">Smartt Pro</string>
+    <!-- Subtitle of the hero block on the upgrade screen -->
+    <string name="SmarttUpgrade_hero__subtitle">Your inbox already waits for you. Pro removes every limit around it — and if you are setting up a child’s phone, add Parental Control to the same subscription.</string>
+
+    <!-- Status strip shown when a plan is active. Placeholder is the short plan name. -->
+    <string name="SmarttUpgrade_active__title">%1$s is active</string>
+    <!-- Detail line of the active status strip for a monthly subscription -->
+    <string name="SmarttUpgrade_active__billed_monthly">Billed monthly · cancel any time from Settings</string>
+    <!-- Detail line of the active status strip for a yearly subscription -->
+    <string name="SmarttUpgrade_active__billed_yearly">Billed yearly · cancel any time from Settings</string>
+
+    <!-- Monthly option of the billing period selector -->
+    <string name="SmarttUpgrade_billing__monthly">Monthly</string>
+    <!-- Yearly option of the billing period selector -->
+    <string name="SmarttUpgrade_billing__yearly">Yearly</string>
+    <!-- Savings badge on the yearly billing option. Placeholder is the discount percentage. -->
+    <string name="SmarttUpgrade_billing__save">−%1$d%%</string>
+
+    <!-- Name of the Pro plan -->
+    <string name="SmarttUpgrade_plan__pro_name">Smartt Pro</string>
+    <!-- Short name of the Pro plan, used in buttons and status lines -->
+    <string name="SmarttUpgrade_plan__pro_short_name">Pro</string>
+    <!-- One line summary of the Pro plan -->
+    <string name="SmarttUpgrade_plan__pro_tagline">Every limit around your delivery windows, removed.</string>
+    <!-- Name of the Pro plus Parental Control plan -->
+    <string name="SmarttUpgrade_plan__parental_name">Smartt Pro + Parental Control</string>
+    <!-- Short name of the Pro plus Parental Control plan, used in buttons and status lines -->
+    <string name="SmarttUpgrade_plan__parental_short_name">Pro + Parental Control</string>
+    <!-- One line summary of the Pro plus Parental Control plan -->
+    <string name="SmarttUpgrade_plan__parental_tagline">Everything in Pro, plus the on-device filter and your child’s windows.</string>
+    <!-- Price suffix on a plan card billed monthly, abbreviated -->
+    <string name="SmarttUpgrade_plan__per_month_suffix">/mo</string>
+    <!-- Price suffix on a plan card billed yearly, abbreviated -->
+    <string name="SmarttUpgrade_plan__per_year_suffix">/yr</string>
+    <!-- Monthly equivalent of a yearly price on a plan card. Placeholder is the formatted price. -->
+    <string name="SmarttUpgrade_plan__per_month_equivalent">%1$s / month</string>
+
+    <!-- Title of the delivery windows feature group -->
+    <string name="SmarttUpgrade_group__windows_title">Delivery windows</string>
+    <!-- Caption of the delivery windows feature group. Placeholder is the app name. -->
+    <string name="SmarttUpgrade_group__windows_caption">The reason %1$s exists — without the ceiling.</string>
+    <!-- Title of the messaging feature group -->
+    <string name="SmarttUpgrade_group__messaging_title">Messaging</string>
+    <!-- Caption of the messaging feature group -->
+    <string name="SmarttUpgrade_group__messaging_caption">The limits you actually run into, lifted.</string>
+    <!-- Title of the privacy and backups feature group -->
+    <string name="SmarttUpgrade_group__privacy_title">Privacy &amp; backups</string>
+    <!-- Caption of the privacy and backups feature group -->
+    <string name="SmarttUpgrade_group__privacy_caption">No ads on any plan, free included. These go further.</string>
+    <!-- Title of the Parental Control feature group -->
+    <string name="SmarttUpgrade_group__parental_title">Parental Control</string>
+    <!-- Caption of the Parental Control feature group -->
+    <string name="SmarttUpgrade_group__parental_caption">A whole second product, set up on your child’s phone in one sitting — no parent app, nothing to pair.</string>
+    <!-- Tag shown on a feature group that the selected plan does not include -->
+    <string name="SmarttUpgrade_group__not_in_pro">Not in Pro</string>
+    <!-- Button that adds Parental Control to a monthly subscription. Placeholder is the extra price. -->
+    <string name="SmarttUpgrade_group__add_parental_monthly">Add Parental Control · %1$s/month more</string>
+    <!-- Button that adds Parental Control to a yearly subscription. Placeholder is the extra price. -->
+    <string name="SmarttUpgrade_group__add_parental_yearly">Add Parental Control · %1$s/year more</string>
+
+    <!-- Line describing what the free tier offers for a feature. Placeholder is the free tier limit. -->
+    <string name="SmarttUpgrade_feature__on_free">On Free: %1$s</string>
+    <!-- Free tier limit, used by features the free tier does not offer at all -->
+    <string name="SmarttUpgrade_feature__not_included">Not included</string>
+    <!-- Free tier limit, used by features the free tier caps at one month of history -->
+    <string name="SmarttUpgrade_feature__last_30_days">Last 30 days</string>
+    <!-- Feature: unlimited delivery windows, title -->
+    <string name="SmarttUpgrade_feature__unlimited_windows_title">Unlimited delivery windows</string>
+    <!-- Feature: unlimited delivery windows, description -->
+    <string name="SmarttUpgrade_feature__unlimited_windows_detail">Open as many as you want — 9:00–12:00 for work, 18:00–18:30 for everything else.</string>
+    <!-- Feature: unlimited delivery windows, free tier limit -->
+    <string name="SmarttUpgrade_feature__unlimited_windows_free">One window a day</string>
+    <!-- Feature: multiple mail accounts, title -->
+    <string name="SmarttUpgrade_feature__mail_accounts_title">Up to 10 mail accounts</string>
+    <!-- Feature: multiple mail accounts, description -->
+    <string name="SmarttUpgrade_feature__mail_accounts_detail">Work, personal and side-project inboxes, each with its own window.</string>
+    <!-- Feature: multiple mail accounts, free tier limit -->
+    <string name="SmarttUpgrade_feature__mail_accounts_free">One account</string>
+    <!-- Feature: priority senders, title -->
+    <string name="SmarttUpgrade_feature__priority_senders_title">Priority senders</string>
+    <!-- Feature: priority senders, description -->
+    <string name="SmarttUpgrade_feature__priority_senders_detail">Pick the people who can reach you outside the window. Everyone else waits.</string>
+    <!-- Feature: unlimited mail history, title -->
+    <string name="SmarttUpgrade_feature__mail_history_title">Unlimited mail history</string>
+    <!-- Feature: unlimited mail history, description -->
+    <string name="SmarttUpgrade_feature__mail_history_detail">Full-text search across everything you have ever received.</string>
+    <!-- Feature: smart digest, title -->
+    <string name="SmarttUpgrade_feature__smart_digest_title">Smart digest</string>
+    <!-- Feature: smart digest, description -->
+    <string name="SmarttUpgrade_feature__smart_digest_detail">A one-paragraph summary of what arrived while the window was closed.</string>
+    <!-- Feature: large file transfers, title -->
+    <string name="SmarttUpgrade_feature__file_transfers_title">4 GB file transfers</string>
+    <!-- Feature: large file transfers, description -->
+    <string name="SmarttUpgrade_feature__file_transfers_detail">Send full video files and design exports without splitting them.</string>
+    <!-- Feature: large file transfers, free tier limit -->
+    <string name="SmarttUpgrade_feature__file_transfers_free">100 MB</string>
+    <!-- Feature: voice message transcription, title -->
+    <string name="SmarttUpgrade_feature__transcription_title">Voice message transcription</string>
+    <!-- Feature: voice message transcription, description -->
+    <string name="SmarttUpgrade_feature__transcription_detail">Turn any voice note into text — useful exactly when you cannot listen.</string>
+    <!-- Feature: real-time translation, title -->
+    <string name="SmarttUpgrade_feature__translation_title">Real-time translation</string>
+    <!-- Feature: real-time translation, description -->
+    <string name="SmarttUpgrade_feature__translation_detail">Translate a whole conversation, not one message at a time.</string>
+    <!-- Feature: real-time translation, free tier limit -->
+    <string name="SmarttUpgrade_feature__translation_free">One message at a time</string>
+    <!-- Feature: unlimited encrypted backups, title -->
+    <string name="SmarttUpgrade_feature__backups_title">Unlimited encrypted backups</string>
+    <!-- Feature: unlimited encrypted backups, description -->
+    <string name="SmarttUpgrade_feature__backups_detail">Full message and mail history, backed up end-to-end encrypted.</string>
+    <!-- Feature: granular privacy, title -->
+    <string name="SmarttUpgrade_feature__granular_privacy_title">Granular privacy</string>
+    <!-- Feature: granular privacy, description -->
+    <string name="SmarttUpgrade_feature__granular_privacy_detail">Hide last seen, read receipts and online status per contact.</string>
+    <!-- Feature: granular privacy, free tier limit -->
+    <string name="SmarttUpgrade_feature__granular_privacy_free">All contacts or none</string>
+    <!-- Feature: priority support, title -->
+    <string name="SmarttUpgrade_feature__priority_support_title">Priority support</string>
+    <!-- Feature: priority support, description -->
+    <string name="SmarttUpgrade_feature__priority_support_detail">Answers from a human, usually the same day.</string>
+    <!-- Feature: priority support, free tier limit -->
+    <string name="SmarttUpgrade_feature__priority_support_free">Help centre</string>
+    <!-- Feature: on-device AI media filter, title -->
+    <string name="SmarttUpgrade_feature__ai_filter_title">On-device AI media filter</string>
+    <!-- Feature: on-device AI media filter, description -->
+    <string name="SmarttUpgrade_feature__ai_filter_detail">Every image and video is checked before it renders — nudity, violence, weapons, drugs, self-harm, hate and scam links. Nothing leaves the phone.</string>
+    <!-- Feature: outgoing media scanning, title -->
+    <string name="SmarttUpgrade_feature__outgoing_media_title">Outgoing media scanned too</string>
+    <!-- Feature: outgoing media scanning, description -->
+    <string name="SmarttUpgrade_feature__outgoing_media_detail">Catches sexting in both directions and warns your child before a photo leaves the device.</string>
+    <!-- Feature: communication windows for a child, title -->
+    <string name="SmarttUpgrade_feature__child_windows_title">Communication windows for your child</string>
+    <!-- Feature: communication windows for a child, description -->
+    <string name="SmarttUpgrade_feature__child_windows_detail">Messages and calls arrive in the background and are only shown inside the windows you set. No buzzing during class.</string>
+    <!-- Feature: bedtime lock and approved contacts, title -->
+    <string name="SmarttUpgrade_feature__bedtime_lock_title">Bedtime lock &amp; approved contacts</string>
+    <!-- Feature: bedtime lock and approved contacts, description -->
+    <string name="SmarttUpgrade_feature__bedtime_lock_detail">Nothing is delivered overnight, and anyone new is held on the phone instead of appearing in their chat list.</string>
+    <!-- Feature: weekly digest and PIN lock, title -->
+    <string name="SmarttUpgrade_feature__weekly_digest_title">Weekly digest &amp; PIN lock</string>
+    <!-- Feature: weekly digest and PIN lock, description -->
+    <string name="SmarttUpgrade_feature__weekly_digest_detail">What was blocked, who is new and how much window time was used, readable with your PIN — and your child cannot turn any of it off.</string>
+
+    <!-- Small print at the bottom of the upgrade screen. First placeholder is the trial length in days, second is the app name. -->
+    <string name="SmarttUpgrade_legal__body">Prototype only — no payment is taken. Both programs include the %1$d-day trial, renew automatically and can be cancelled any time from Settings. Parental Control is set up directly on your child’s phone — there is no parent app and nothing to pair. %2$s has no ads on any plan.</string>
+
+    <!-- Terms line above the purchase button for a monthly plan. First placeholder is the trial length in days, second the price. -->
+    <string name="SmarttUpgrade_cta__terms_monthly">%1$d days free, then %2$s/month · cancel any time</string>
+    <!-- Terms line above the purchase button for a yearly plan. First placeholder is the trial length in days, second the yearly price, third the monthly equivalent. -->
+    <string name="SmarttUpgrade_cta__terms_yearly">%1$d days free, then %2$s/year (%3$s / month) · cancel any time</string>
+    <!-- Purchase button when nothing is subscribed. Placeholder is the trial length in days. -->
+    <string name="SmarttUpgrade_cta__start_trial">Start %1$d days free</string>
+    <!-- Purchase button when switching to a monthly plan. First placeholder is the short plan name, second the price. -->
+    <string name="SmarttUpgrade_cta__switch_monthly">Switch to %1$s · %2$s/month</string>
+    <!-- Purchase button when switching to a yearly plan. First placeholder is the short plan name, second the price. -->
+    <string name="SmarttUpgrade_cta__switch_yearly">Switch to %1$s · %2$s/year</string>
+    <!-- Purchase button when the selected plan is already active. Placeholder is the short plan name. -->
+    <string name="SmarttUpgrade_cta__active">%1$s active</string>
+    <!-- Button that looks for a previous purchase -->
+    <string name="SmarttUpgrade_cta__restore">Restore purchases</string>
+    <!-- Message shown when no previous purchase exists -->
+    <string name="SmarttUpgrade_cta__restore_none">No previous purchase found on this device.</string>
+    <!-- Message shown when a previous purchase was restored. Placeholder is the short plan name. -->
+    <string name="SmarttUpgrade_cta__restored">%1$s restored.</string>
+
+    <!-- Shop feature: overflow menu entry and screen title -->
+    <string name="SmarttShop__menu_item">Shop</string>
+    <!-- Introduction at the top of the shop screen -->
+    <string name="SmarttShop__intro">Two things that help keep technology in its place.</string>
+    <!-- Small print at the bottom of the shop screen -->
+    <string name="SmarttShop__legal">Prototype only — the link opens the partner site.</string>
+    <!-- Shop item: the book, name -->
+    <string name="SmarttShop_freedom_experiment__name">The Freedom Experiment</string>
+    <!-- Shop item: the book, product type and partner site -->
+    <string name="SmarttShop_freedom_experiment__meta">Book · thefreedomexperiment.com</string>
+    <!-- Shop item: the book, description -->
+    <string name="SmarttShop_freedom_experiment__blurb">One year without a phone and four years of research on why we keep reaching for the screen.</string>
+    <!-- Shop item: the book, price label shown while it is not yet released -->
+    <string name="SmarttShop_freedom_experiment__price">Pre-order</string>
+    <!-- Shop item: the book, button that opens the partner site -->
+    <string name="SmarttShop_freedom_experiment__action">Reserve a copy</string>
+    <!-- Shop item: the phone, name -->
+    <string name="SmarttShop_balance_phone__name">Balance Phone</string>
+    <!-- Shop item: the phone, product type and partner site -->
+    <string name="SmarttShop_balance_phone__meta">Phone · thebalancephone.com</string>
+    <!-- Shop item: the phone, description -->
+    <string name="SmarttShop_balance_phone__blurb">A smartphone with no social media, no games and no streaming. Everything else works.</string>
+    <!-- Shop item: the phone, price -->
+    <string name="SmarttShop_balance_phone__price">€399</string>
+    <!-- Shop item: the phone, button that opens the partner site -->
+    <string name="SmarttShop_balance_phone__action">Buy</string>
+
+    <!-- Parental Control feature: settings row label and screen title -->
+    <string name="SmarttParental__title">Parental Control</string>
+    <!-- Badge in the screen toolbar indicating the settings are PIN protected -->
+    <string name="SmarttParental__pin_chip">PIN</string>
+    <!-- Introduction at the top of the Parental Control screen -->
+    <string name="SmarttParental__intro">Everything below is stored on this phone. There is no parent app and nothing to pair — set it up here, lock it with your PIN, and hand the phone back.</string>
+
+    <!-- Heading shown when the Parental Control settings have been locked -->
+    <string name="SmarttParental_locked__title">Settings locked</string>
+    <!-- Body text shown when the Parental Control settings have been locked -->
+    <string name="SmarttParental_locked__body">The filter, the windows and the contact rules are active and Marc cannot change them. You can hand the phone back.</string>
+    <!-- Button that reopens the locked Parental Control settings -->
+    <string name="SmarttParental_locked__action">Enter PIN to edit</string>
+
+    <!-- Title of the header naming the child whose phone is being set up -->
+    <string name="SmarttParental_header__title">You are setting up Marc’s phone</string>
+    <!-- Subtitle of the child header: name, age and device -->
+    <string name="SmarttParental_header__subtitle">Marc · 11 years · Balance Phone Kids</string>
+
+    <!-- Label of the statistic counting media blocked on this phone -->
+    <string name="SmarttParental_stats__blocked_label">Blocked on this phone</string>
+    <!-- Label of the statistic counting items waiting for the parent to review -->
+    <string name="SmarttParental_stats__waiting_label">Waiting for you</string>
+    <!-- Label of the statistic showing how much window time the child has per day -->
+    <string name="SmarttParental_stats__window_label">Window time / day</string>
+    <!-- Value of the statistic showing how much window time the child has per day -->
+    <string name="SmarttParental_stats__window_value">2h 10m</string>
+
+    <!-- Title of the AI content filter section -->
+    <string name="SmarttParental_filter__section_title">AI content filter</string>
+    <!-- Caption of the AI content filter section -->
+    <string name="SmarttParental_filter__section_caption">Every image and video is analysed on this phone before it is rendered — the media never leaves the device and is never sent to a server. Typical decision time: 120 ms.</string>
+    <!-- Title of the switch enabling the AI media filter -->
+    <string name="SmarttParental_filter__master_title">Filter media with AI</string>
+    <!-- Detail of the AI media filter switch when on. First placeholder is the number of enabled categories, second is the total. -->
+    <string name="SmarttParental_filter__master_detail_on">%1$d of %2$d categories active</string>
+    <!-- Detail of the AI media filter switch when off -->
+    <string name="SmarttParental_filter__master_detail_off">Off — Marc sees everything they receive</string>
+    <!-- Subheading above the filter sensitivity selector -->
+    <string name="SmarttParental_filter__sensitivity_subhead">Sensitivity</string>
+    <!-- Least strict filter sensitivity option -->
+    <string name="SmarttParental_filter__sensitivity_low">Low</string>
+    <!-- Middle filter sensitivity option -->
+    <string name="SmarttParental_filter__sensitivity_balanced">Balanced</string>
+    <!-- Most strict filter sensitivity option -->
+    <string name="SmarttParental_filter__sensitivity_strict">Strict</string>
+    <!-- Explanation of the low filter sensitivity option -->
+    <string name="SmarttParental_filter__sensitivity_low_hint">Only clear-cut cases. Fewest false positives, some borderline content gets through.</string>
+    <!-- Explanation of the balanced filter sensitivity option -->
+    <string name="SmarttParental_filter__sensitivity_balanced_hint">Recommended for 9–13. Flags borderline content and asks you when unsure.</string>
+    <!-- Explanation of the strict filter sensitivity option -->
+    <string name="SmarttParental_filter__sensitivity_strict_hint">Blocks anything even slightly suggestive. Expect a few harmless photos to be held.</string>
+    <!-- Subheading above the list of content categories that can be blocked -->
+    <string name="SmarttParental_filter__categories_subhead">What to block</string>
+
+    <!-- Blocked category: nudity, title -->
+    <string name="SmarttParental_category__sexual_title">Nudity &amp; sexual content</string>
+    <!-- Blocked category: nudity, description -->
+    <string name="SmarttParental_category__sexual_detail">Photos, videos, GIFs and stickers. Also catches partial nudity and suggestive poses.</string>
+    <!-- Blocked category: violence, title -->
+    <string name="SmarttParental_category__violence_title">Violence &amp; gore</string>
+    <!-- Blocked category: violence, description -->
+    <string name="SmarttParental_category__violence_detail">Fights, blood, injuries, animal cruelty and graphic accidents.</string>
+    <!-- Blocked category: weapons, title -->
+    <string name="SmarttParental_category__weapons_title">Weapons</string>
+    <!-- Blocked category: weapons, description -->
+    <string name="SmarttParental_category__weapons_detail">Firearms, knives and airsoft replicas held or pointed at people.</string>
+    <!-- Blocked category: drugs, title -->
+    <string name="SmarttParental_category__drugs_title">Drugs, alcohol &amp; vaping</string>
+    <!-- Blocked category: drugs, description -->
+    <string name="SmarttParental_category__drugs_detail">Substances, paraphernalia and vape devices in frame.</string>
+    <!-- Blocked category: self-harm, title -->
+    <string name="SmarttParental_category__selfharm_title">Self-harm</string>
+    <!-- Blocked category: self-harm, description -->
+    <string name="SmarttParental_category__selfharm_detail">Cuts, scars and pro-self-harm imagery. Always alerts you, never silently.</string>
+    <!-- Blocked category: hate speech, title -->
+    <string name="SmarttParental_category__hate_title">Hate speech &amp; symbols</string>
+    <!-- Blocked category: hate speech, description -->
+    <string name="SmarttParental_category__hate_detail">Slurs in text and extremist symbols in images.</string>
+    <!-- Blocked category: scams and phishing, title -->
+    <string name="SmarttParental_category__scams_title">Scams, phishing &amp; adult links</string>
+    <!-- Blocked category: scams and phishing, description -->
+    <string name="SmarttParental_category__scams_detail">Checks every link and its preview before the child can tap it.</string>
+    <!-- Blocked category: profanity, title -->
+    <string name="SmarttParental_category__profanity_title">Profanity in text</string>
+    <!-- Blocked category: profanity, description -->
+    <string name="SmarttParental_category__profanity_detail">Masks strong language instead of hiding the whole message.</string>
+
+    <!-- Subheading above the selector for what happens to blocked media -->
+    <string name="SmarttParental_filter__action_subhead">When something is caught</string>
+    <!-- Option to blur blocked media and explain why -->
+    <string name="SmarttParental_filter__action_blur">Blur &amp; warn</string>
+    <!-- Option to hide blocked media -->
+    <string name="SmarttParental_filter__action_hide">Hide</string>
+    <!-- Option to delete blocked media -->
+    <string name="SmarttParental_filter__action_delete">Delete</string>
+    <!-- Explanation of the blur option -->
+    <string name="SmarttParental_filter__action_blur_hint">The child sees a blurred placeholder and a note explaining why. Nothing is deleted.</string>
+    <!-- Explanation of the hide option -->
+    <string name="SmarttParental_filter__action_hide_hint">The message is removed from the chat and moved to your review queue.</string>
+    <!-- Explanation of the delete option -->
+    <string name="SmarttParental_filter__action_delete_hint">The media is deleted from the device immediately. You still get the alert.</string>
+
+    <!-- Title of the switch that also scans media the child sends -->
+    <string name="SmarttParental_filter__scan_outgoing_title">Scan outgoing media too</string>
+    <!-- Detail of the switch that also scans media the child sends -->
+    <string name="SmarttParental_filter__scan_outgoing_detail">Stops Marc sending nudes or sensitive photos, and warns them before it leaves the phone.</string>
+    <!-- Title of the switch that keeps a log of blocked media -->
+    <string name="SmarttParental_filter__keep_log_title">Keep a log of what was blocked</string>
+    <!-- Detail of the switch that keeps a log of blocked media -->
+    <string name="SmarttParental_filter__keep_log_detail">Sender, category and a safe thumbnail, saved on this phone. Only readable with your PIN.</string>
+    <!-- Title of the switch letting the child report a wrong block -->
+    <string name="SmarttParental_filter__child_flag_title">Let Marc flag a mistake</string>
+    <!-- Detail of the switch letting the child report a wrong block -->
+    <string name="SmarttParental_filter__child_flag_detail">Marc can mark a block as wrong instead of being stuck. It waits in the review queue for the next time you have the phone.</string>
+    <!-- Row leading to the queue of media held on this phone -->
+    <string name="SmarttParental_filter__review_row">Review what was held on this phone</string>
+
+    <!-- Title of the communication windows section -->
+    <string name="SmarttParental_windows__section_title">Communication windows</string>
+    <!-- Caption of the communication windows section -->
+    <string name="SmarttParental_windows__section_caption">Messages, mail and calls keep arriving in the background, but this phone only shows them to Marc inside the windows you set here. No buzzing during class, no scrolling at midnight.</string>
+    <!-- Title of the switch limiting when messages are shown to the child -->
+    <string name="SmarttParental_windows__master_title">Limit when messages are delivered</string>
+    <!-- Detail of the delivery window switch when off -->
+    <string name="SmarttParental_windows__master_detail_off">Off — Marc receives everything as it arrives</string>
+    <!-- Name of the preset weekday window -->
+    <string name="SmarttParental_windows__after_school">After school</string>
+    <!-- Name of the preset weekend window -->
+    <string name="SmarttParental_windows__weekend">Weekend</string>
+    <!-- A window\'s time range. First placeholder is the start time, second the end time. -->
+    <string name="SmarttParental_windows__time_range">%1$s–%2$s</string>
+    <!-- Shown instead of the day letters when a window is active every day -->
+    <string name="SmarttParental_windows__every_day">Every day</string>
+    <!-- Subheading above the selector for what happens outside a window -->
+    <string name="SmarttParental_windows__outside_subhead">Outside the window</string>
+    <!-- Option holding messages back until the window opens -->
+    <string name="SmarttParental_windows__outside_hold">Hold until it opens</string>
+    <!-- Option delivering messages silently outside the window -->
+    <string name="SmarttParental_windows__outside_silent">Deliver silently</string>
+    <!-- Explanation of the hold option -->
+    <string name="SmarttParental_windows__outside_hold_hint">Messages are downloaded and encrypted on this phone, but stay invisible until the window opens.</string>
+    <!-- Explanation of the deliver silently option -->
+    <string name="SmarttParental_windows__outside_silent_hint">Messages appear with no sound, no vibration and no badge. Marc can still look.</string>
+    <!-- Title of the overnight lock switch -->
+    <string name="SmarttParental_windows__bedtime_title">Bedtime lock · 21:30 – 07:30</string>
+    <!-- Detail of the overnight lock switch -->
+    <string name="SmarttParental_windows__bedtime_detail">Nothing is delivered and the app cannot be opened, not even inside a window.</string>
+    <!-- Title of the switch applying windows to calls as well -->
+    <string name="SmarttParental_windows__calls_title">Calls follow the same windows</string>
+    <!-- Detail of the switch applying windows to calls as well -->
+    <string name="SmarttParental_windows__calls_detail">Outside the window, calls are logged as missed and shown when the window opens.</string>
+    <!-- Subheading above the contacts that can always reach the child -->
+    <string name="SmarttParental_windows__allowed_subhead">Always allowed</string>
+    <!-- Always allowed contact: the child\'s mother -->
+    <string name="SmarttParental_windows__allowed_mum">Mum</string>
+    <!-- Always allowed contact: the child\'s father -->
+    <string name="SmarttParental_windows__allowed_dad">Dad</string>
+    <!-- Always allowed contact: the child\'s grandmother -->
+    <string name="SmarttParental_windows__allowed_grandma">Grandma</string>
+    <!-- Always allowed contact: the emergency services number -->
+    <string name="SmarttParental_windows__allowed_emergency">Emergency (112)</string>
+    <!-- Chip for adding another always allowed contact -->
+    <string name="SmarttParental_windows__allowed_add">+ Add</string>
+    <!-- Explanation of the always allowed contacts -->
+    <string name="SmarttParental_windows__allowed_hint">These contacts break through every window, the bedtime lock included. Add your own number before you hand the phone back.</string>
+
+    <!-- Title of the contacts and digest section -->
+    <string name="SmarttParental_contacts__section_title">Contacts &amp; digest</string>
+    <!-- Caption of the contacts and digest section -->
+    <string name="SmarttParental_contacts__section_caption">Anything held back waits on this phone until you unlock these settings again — nothing is forwarded to you.</string>
+    <!-- Title of the switch restricting who can message the child -->
+    <string name="SmarttParental_contacts__approved_title">Only approved contacts can write</string>
+    <!-- Detail of the switch restricting who can message the child -->
+    <string name="SmarttParental_contacts__approved_detail">Anyone new is held on this phone instead of appearing in Marc’s chat list.</string>
+    <!-- Title of the switch restricting who can email the child -->
+    <string name="SmarttParental_contacts__mail_title">Mail from approved senders only</string>
+    <!-- Detail of the switch restricting who can email the child -->
+    <string name="SmarttParental_contacts__mail_detail">Newsletters and unknown addresses stay held until you release them here.</string>
+    <!-- Title of the weekly digest switch -->
+    <string name="SmarttParental_contacts__digest_title">Weekly digest on this phone</string>
+    <!-- Detail of the weekly digest switch -->
+    <string name="SmarttParental_contacts__digest_detail">What was blocked, who is new and how much window time was used — ready to read the next time you unlock these settings.</string>
+
+    <!-- Title of the parent PIN section -->
+    <string name="SmarttParental_pin__section_title">Parent PIN</string>
+    <!-- Caption of the parent PIN section -->
+    <string name="SmarttParental_pin__section_caption">You and Marc share one device, so the PIN is the only thing separating what you can change from what Marc can. Pick something Marc will not guess or watch you type.</string>
+    <!-- Title of the switch requiring a PIN to change these settings -->
+    <string name="SmarttParental_pin__require_title">Require PIN to change these settings</string>
+    <!-- Detail of the switch requiring a PIN to change these settings -->
+    <string name="SmarttParental_pin__require_detail">Without it, Marc can turn the filter and the windows off as soon as you hand the phone back.</string>
+    <!-- Row for changing the parent PIN -->
+    <string name="SmarttParental_pin__change_row">Change parent PIN</string>
+
+    <!-- Small print at the bottom of the Parental Control screen. Placeholder is the app name. -->
+    <string name="SmarttParental_legal__body">Prototype only — no model is running and nothing is enforced. Detection happens on-device in the real product: there is no parent app, no paired device and no account to link, and %1$s never receives Marc’s photos or messages.</string>
+    <!-- Button that locks the Parental Control settings before handing the phone to the child -->
+    <string name="SmarttParental_footer__lock">Lock settings &amp; hand the phone back</string>
+
+    <!-- Detail of the delivery window switch when on, counting the configured windows -->
+    <plurals name="SmarttParental_windows__master_detail_on">
+        <item quantity="one">%1$d window configured</item>
+        <item quantity="other">%1$d windows configured</item>
+    </plurals>
 </resources>

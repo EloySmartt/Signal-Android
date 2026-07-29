@@ -2,4 +2,16 @@
 <resources>
     <!-- Connect WhatsApp feature: brand green used for the WhatsApp glyph tile and primary CTAs. -->
     <color name="whatsapp_green">#25D366</color>
+
+    <!-- Upgrade screen: gradient start for the Smartt Pro hero mark. -->
+    <color name="smartt_pro_gradient_start">#5563FF</color>
+    <!-- Upgrade screen: gradient end for the Smartt Pro hero mark. -->
+    <color name="smartt_pro_gradient_end">#9B5CFF</color>
+    <!-- Upgrade screen: green used for the active plan check and the yearly savings badge. -->
+    <color name="smartt_pro_affirmative">#09A523</color>
+    <!-- Shop screen: warm plate the product images sit on, intentionally the same in light and dark. -->
+    <color name="smartt_shop_plate">#F5F3EF</color>
+
+    <!-- Parental Control screen: teal plate behind the child's initial in the header avatar. -->
+    <color name="smartt_parental_child_avatar">#12A594</color>
 </resources>

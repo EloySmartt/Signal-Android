@@ -1152,6 +1152,22 @@
               android:theme="@style/Signal.DayNight.NoActionBar" />
     <!-- [/Smartt] -->
 
+    <!-- [Smartt] Upgrade and Shop -->
+    <activity android:name="com.smarttmessenger.upgrade.ui.SmarttUpgradeActivity"
+              android:exported="false"
+              android:theme="@style/Signal.DayNight.NoActionBar" />
+
+    <activity android:name="com.smarttmessenger.shop.ui.SmarttShopActivity"
+              android:exported="false"
+              android:theme="@style/Signal.DayNight.NoActionBar" />
+    <!-- [/Smartt] -->
+
+    <!-- [Smartt] Parental Control -->
+    <activity android:name="com.smarttmessenger.parental.ui.SmarttParentalActivity"
+              android:exported="false"
+              android:theme="@style/Signal.DayNight.NoActionBar" />
+    <!-- [/Smartt] -->
+
     <service
         android:enabled="true"
         android:exported="false"

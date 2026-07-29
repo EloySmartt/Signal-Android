@@ -620,6 +620,10 @@ private fun CallDropdownItems(callFilter: CallLogFilter, callback: MainToolbarCa
 
 @Composable
 private fun ChatDropdownItems(state: MainToolbarState, callback: MainToolbarCallback, onOptionSelected: () -> Unit) {
+  // [Smartt] Upgrade + Shop, pinned above the stock chat options
+  com.smarttmessenger.menu.SmarttChatMenuItems(onOptionSelected = onOptionSelected)
+  // [/Smartt]
+
   DropdownMenus.Item(
     text = {
       Text(
