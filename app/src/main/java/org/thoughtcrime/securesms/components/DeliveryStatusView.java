@@ -214,7 +214,7 @@ public class DeliveryStatusView extends AppCompatImageView {
     SENT(2, R.string.message_details_header_sent),
     DELIVERED(3, R.string.conversation_item_sent__delivered_description),
     READ(4, R.string.conversation_item_sent__message_read),
-    WINDOW_HELD(5, -1); // [Smartt]
+    WINDOW_HELD(5, R.string.smartt_conversation_item_sent__window_held_description); // [Smartt]
 
     final int code;
 

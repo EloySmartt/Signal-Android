@@ -563,4 +563,7 @@
         <item quantity="one">%1$d window configured</item>
         <item quantity="other">%1$d windows configured</item>
     </plurals>
+
+    <!-- Accessibility description of the cloud icon shown on a sent message that the recipient's communication window is holding -->
+    <string name="smartt_conversation_item_sent__window_held_description">Waiting for the recipient\'s communication window</string>
 </resources>
