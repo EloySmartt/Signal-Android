@@ -11,7 +11,4 @@
     <color name="smartt_pro_affirmative">#09A523</color>
     <!-- Shop screen: warm plate the product images sit on, intentionally the same in light and dark. -->
     <color name="smartt_shop_plate">#F5F3EF</color>
-
-    <!-- Parental Control screen: teal plate behind the child's initial in the header avatar. -->
-    <color name="smartt_parental_child_avatar">#12A594</color>
 </resources>

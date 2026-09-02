@@ -21,8 +21,6 @@ import org.thoughtcrime.securesms.R
  */
 object SmarttParentalCatalog {
 
-  const val BLOCKED_COUNT = 37
-  const val WAITING_COUNT = 4
   const val REVIEW_COUNT = 4
 
   private val TINT_INDIGO = Color(0x294655FF)
@@ -35,7 +33,7 @@ object SmarttParentalCatalog {
   private val TINT_GREY = Color(0x2E969696)
   private val TINT_CORAL = Color(0x2EFF6B6B)
 
-  /** Tint of the two section master switches and the parent PIN switch. */
+  /** Tint of the windows master switch and the parent PIN switch. */
   val masterTint: Color = TINT_INDIGO
 
   /** Day letters for the window chips, starting on Monday. */
@@ -108,7 +106,7 @@ object SmarttParentalCatalog {
     )
   )
 
-  /** Filter options that sit below the category list and share its enabled state. */
+  /** Filter options that sit below the category list. */
   val filterExtraToggles: ImmutableList<SmarttParentalToggleRow> = persistentListOf(
     SmarttParentalToggleRow(
       toggle = SmarttParentalToggle.SCAN_OUTGOING,
@@ -206,7 +204,6 @@ object SmarttParentalCatalog {
 
   /** Every switch starts on. */
   val DEFAULT_TOGGLES: ImmutableSet<SmarttParentalToggle> = persistentSetOf(
-    SmarttParentalToggle.FILTER,
     SmarttParentalToggle.SCAN_OUTGOING,
     SmarttParentalToggle.KEEP_LOG,
     SmarttParentalToggle.CHILD_CAN_FLAG,

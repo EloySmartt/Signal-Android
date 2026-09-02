@@ -362,8 +362,6 @@
     <string name="SmarttParental__title">Parental Control</string>
     <!-- Badge in the screen toolbar indicating the settings are PIN protected -->
     <string name="SmarttParental__pin_chip">PIN</string>
-    <!-- Introduction at the top of the Parental Control screen -->
-    <string name="SmarttParental__intro">Everything below is stored on this phone. There is no parent app and nothing to pair — set it up here, lock it with your PIN, and hand the phone back.</string>
 
     <!-- Heading shown when the Parental Control settings have been locked -->
     <string name="SmarttParental_locked__title">Settings locked</string>
@@ -372,30 +370,6 @@
     <!-- Button that reopens the locked Parental Control settings -->
     <string name="SmarttParental_locked__action">Enter PIN to edit</string>
 
-    <!-- Title of the header naming the child whose phone is being set up -->
-    <string name="SmarttParental_header__title">You are setting up Marc’s phone</string>
-    <!-- Subtitle of the child header: name, age and device -->
-    <string name="SmarttParental_header__subtitle">Marc · 11 years · Balance Phone Kids</string>
-
-    <!-- Label of the statistic counting media blocked on this phone -->
-    <string name="SmarttParental_stats__blocked_label">Blocked on this phone</string>
-    <!-- Label of the statistic counting items waiting for the parent to review -->
-    <string name="SmarttParental_stats__waiting_label">Waiting for you</string>
-    <!-- Label of the statistic showing how much window time the child has per day -->
-    <string name="SmarttParental_stats__window_label">Window time / day</string>
-    <!-- Value of the statistic showing how much window time the child has per day -->
-    <string name="SmarttParental_stats__window_value">2h 10m</string>
-
-    <!-- Title of the AI content filter section -->
-    <string name="SmarttParental_filter__section_title">AI content filter</string>
-    <!-- Caption of the AI content filter section -->
-    <string name="SmarttParental_filter__section_caption">Every image and video is analysed on this phone before it is rendered — the media never leaves the device and is never sent to a server. Typical decision time: 120 ms.</string>
-    <!-- Title of the switch enabling the AI media filter -->
-    <string name="SmarttParental_filter__master_title">Filter media with AI</string>
-    <!-- Detail of the AI media filter switch when on. First placeholder is the number of enabled categories, second is the total. -->
-    <string name="SmarttParental_filter__master_detail_on">%1$d of %2$d categories active</string>
-    <!-- Detail of the AI media filter switch when off -->
-    <string name="SmarttParental_filter__master_detail_off">Off — Marc sees everything they receive</string>
     <!-- Subheading above the filter sensitivity selector -->
     <string name="SmarttParental_filter__sensitivity_subhead">Sensitivity</string>
     <!-- Least strict filter sensitivity option -->
@@ -446,21 +420,6 @@
     <!-- Blocked category: profanity, description -->
     <string name="SmarttParental_category__profanity_detail">Masks strong language instead of hiding the whole message.</string>
 
-    <!-- Subheading above the selector for what happens to blocked media -->
-    <string name="SmarttParental_filter__action_subhead">When something is caught</string>
-    <!-- Option to blur blocked media and explain why -->
-    <string name="SmarttParental_filter__action_blur">Blur &amp; warn</string>
-    <!-- Option to hide blocked media -->
-    <string name="SmarttParental_filter__action_hide">Hide</string>
-    <!-- Option to delete blocked media -->
-    <string name="SmarttParental_filter__action_delete">Delete</string>
-    <!-- Explanation of the blur option -->
-    <string name="SmarttParental_filter__action_blur_hint">The child sees a blurred placeholder and a note explaining why. Nothing is deleted.</string>
-    <!-- Explanation of the hide option -->
-    <string name="SmarttParental_filter__action_hide_hint">The message is removed from the chat and moved to your review queue.</string>
-    <!-- Explanation of the delete option -->
-    <string name="SmarttParental_filter__action_delete_hint">The media is deleted from the device immediately. You still get the alert.</string>
-
     <!-- Title of the switch that also scans media the child sends -->
     <string name="SmarttParental_filter__scan_outgoing_title">Scan outgoing media too</string>
     <!-- Detail of the switch that also scans media the child sends -->
@@ -492,16 +451,6 @@
     <string name="SmarttParental_windows__time_range">%1$s–%2$s</string>
     <!-- Shown instead of the day letters when a window is active every day -->
     <string name="SmarttParental_windows__every_day">Every day</string>
-    <!-- Subheading above the selector for what happens outside a window -->
-    <string name="SmarttParental_windows__outside_subhead">Outside the window</string>
-    <!-- Option holding messages back until the window opens -->
-    <string name="SmarttParental_windows__outside_hold">Hold until it opens</string>
-    <!-- Option delivering messages silently outside the window -->
-    <string name="SmarttParental_windows__outside_silent">Deliver silently</string>
-    <!-- Explanation of the hold option -->
-    <string name="SmarttParental_windows__outside_hold_hint">Messages are downloaded and encrypted on this phone, but stay invisible until the window opens.</string>
-    <!-- Explanation of the deliver silently option -->
-    <string name="SmarttParental_windows__outside_silent_hint">Messages appear with no sound, no vibration and no badge. Marc can still look.</string>
     <!-- Title of the overnight lock switch -->
     <string name="SmarttParental_windows__bedtime_title">Bedtime lock · 21:30 – 07:30</string>
     <!-- Detail of the overnight lock switch -->

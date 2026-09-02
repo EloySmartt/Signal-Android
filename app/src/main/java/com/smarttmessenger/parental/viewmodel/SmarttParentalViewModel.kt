@@ -9,10 +9,8 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.smarttmessenger.parental.model.SmarttBlockAction
 import com.smarttmessenger.parental.model.SmarttFilterCategory
 import com.smarttmessenger.parental.model.SmarttFilterSensitivity
-import com.smarttmessenger.parental.model.SmarttOutsideWindow
 import com.smarttmessenger.parental.model.SmarttParentalCatalog
 import com.smarttmessenger.parental.model.SmarttParentalToggle
 import kotlinx.collections.immutable.ImmutableSet
@@ -26,21 +24,12 @@ data class SmarttParentalState(
   val locked: Boolean = false,
   val toggles: ImmutableSet<SmarttParentalToggle> = SmarttParentalCatalog.DEFAULT_TOGGLES,
   val categories: ImmutableSet<SmarttFilterCategory> = SmarttParentalCatalog.DEFAULT_CATEGORIES,
-  val sensitivity: SmarttFilterSensitivity = SmarttFilterSensitivity.BALANCED,
-  val blockAction: SmarttBlockAction = SmarttBlockAction.BLUR,
-  val outsideWindow: SmarttOutsideWindow = SmarttOutsideWindow.HOLD
+  val sensitivity: SmarttFilterSensitivity = SmarttFilterSensitivity.BALANCED
 ) {
   fun isOn(toggle: SmarttParentalToggle): Boolean = toggle in toggles
 
-  /** The category list and the extra filter switches are only editable while the filter is on. */
-  val filterOn: Boolean
-    get() = isOn(SmarttParentalToggle.FILTER)
-
   val windowsOn: Boolean
     get() = isOn(SmarttParentalToggle.WINDOWS)
-
-  val activeCategoryCount: Int
-    get() = categories.size
 }
 
 /**
@@ -70,14 +59,6 @@ class SmarttParentalViewModel : ViewModel() {
 
   fun setSensitivity(sensitivity: SmarttFilterSensitivity) {
     internalState.value = internalState.value.copy(sensitivity = sensitivity)
-  }
-
-  fun setBlockAction(action: SmarttBlockAction) {
-    internalState.value = internalState.value.copy(blockAction = action)
-  }
-
-  fun setOutsideWindow(behaviour: SmarttOutsideWindow) {
-    internalState.value = internalState.value.copy(outsideWindow = behaviour)
   }
 
   fun lock() {

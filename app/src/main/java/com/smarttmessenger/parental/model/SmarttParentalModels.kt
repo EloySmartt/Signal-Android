@@ -16,7 +16,6 @@ import kotlinx.collections.immutable.ImmutableSet
  * screen never has to thread a dozen separate booleans around.
  */
 enum class SmarttParentalToggle {
-  FILTER,
   SCAN_OUTGOING,
   KEEP_LOG,
   CHILD_CAN_FLAG,
@@ -44,15 +43,9 @@ enum class SmarttFilterCategory {
 /** How eagerly the filter flags borderline media. */
 enum class SmarttFilterSensitivity { LOW, BALANCED, STRICT }
 
-/** What happens to a piece of media once the filter catches it. */
-enum class SmarttBlockAction { BLUR, HIDE, DELETE }
-
-/** What happens to messages that arrive while every window is closed. */
-enum class SmarttOutsideWindow { HOLD, SILENT }
-
 /**
- * A switch with a fixed description. Switches whose detail line changes with state — the two
- * section masters — are rendered directly by their section instead.
+ * A switch with a fixed description. Switches whose detail line changes with state — the windows
+ * master — are rendered directly by their section instead.
  */
 @Immutable
 data class SmarttParentalToggleRow(

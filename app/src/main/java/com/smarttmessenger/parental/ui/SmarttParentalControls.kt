@@ -140,7 +140,7 @@ internal fun SmarttParentalIconTile(@DrawableRes iconRes: Int, tint: Color) {
 /**
  * Icon, title, description and a switch. The whole row is the toggle target.
  *
- * `Rows.ToggleRow` cannot be reused here: it takes neither an icon nor an enabled flag.
+ * `Rows.ToggleRow` cannot be reused here: it does not take an icon.
  */
 @Composable
 internal fun SmarttParentalSwitchRow(
@@ -149,14 +149,13 @@ internal fun SmarttParentalSwitchRow(
   title: String,
   detail: String,
   checked: Boolean,
-  onCheckedChange: (Boolean) -> Unit,
-  enabled: Boolean = true
+  onCheckedChange: (Boolean) -> Unit
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = Modifier
       .fillMaxWidth()
-      .clickable(enabled = enabled) { onCheckedChange(!checked) }
+      .clickable { onCheckedChange(!checked) }
       .padding(horizontal = 14.dp, vertical = 12.dp)
   ) {
     SmarttParentalIconTile(iconRes = iconRes, tint = tint)
@@ -182,7 +181,6 @@ internal fun SmarttParentalSwitchRow(
     Switch(
       checked = checked,
       onCheckedChange = null,
-      enabled = enabled,
       colors = SwitchDefaults.colors(
         checkedTrackColor = MaterialTheme.colorScheme.primary,
         uncheckedBorderColor = MaterialTheme.colorScheme.outline,
@@ -194,10 +192,8 @@ internal fun SmarttParentalSwitchRow(
 }
 
 /**
- * Dims and disables everything inside it when [enabled] is false.
- *
- * Both halves matter: the alpha communicates the state, and withholding clicks is what actually
- * stops the rows responding and marks them disabled to accessibility services.
+ * Dims everything inside it when [enabled] is false. Used for read-only content, where the alpha is
+ * all that is needed to communicate the state.
  */
 @Composable
 internal fun SmarttParentalDimmed(
@@ -210,8 +206,8 @@ internal fun SmarttParentalDimmed(
 }
 
 /**
- * A pill of mutually exclusive options. Used for the three-way sensitivity and block-action
- * choices and the two-way outside-the-window choice; `weight(1f)` makes the arity irrelevant.
+ * A pill of mutually exclusive options. Used for the three-way sensitivity choice; `weight(1f)`
+ * makes the arity irrelevant.
  */
 @Composable
 internal fun <T> SmarttParentalSegmentedControl(

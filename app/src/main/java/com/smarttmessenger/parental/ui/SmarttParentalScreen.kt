@@ -33,10 +33,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.smarttmessenger.parental.model.SmarttBlockAction
 import com.smarttmessenger.parental.model.SmarttFilterCategory
 import com.smarttmessenger.parental.model.SmarttFilterSensitivity
-import com.smarttmessenger.parental.model.SmarttOutsideWindow
 import com.smarttmessenger.parental.model.SmarttParentalCatalog
 import com.smarttmessenger.parental.model.SmarttParentalToggle
 import com.smarttmessenger.parental.viewmodel.SmarttParentalState
@@ -61,8 +59,6 @@ fun SmarttParentalScreen(
   onToggleChanged: (SmarttParentalToggle, Boolean) -> Unit,
   onCategoryChanged: (SmarttFilterCategory, Boolean) -> Unit,
   onSensitivitySelected: (SmarttFilterSensitivity) -> Unit,
-  onBlockActionSelected: (SmarttBlockAction) -> Unit,
-  onOutsideWindowSelected: (SmarttOutsideWindow) -> Unit,
   onLockClick: () -> Unit,
   onUnlockClick: () -> Unit
 ) {
@@ -85,36 +81,6 @@ fun SmarttParentalScreen(
           .fillMaxSize()
       ) {
         LazyColumn(modifier = Modifier.weight(1f)) {
-          item(key = "child_header") {
-            SmarttParentalChildHeader()
-          }
-
-          item(key = "intro") {
-            Text(
-              text = stringResource(R.string.SmarttParental__intro),
-              style = MaterialTheme.typography.bodySmall,
-              color = MaterialTheme.colorScheme.onSurfaceVariant,
-              modifier = Modifier
-                .padding(horizontal = PARENTAL_GUTTER)
-                .padding(top = 14.dp)
-            )
-          }
-
-          item(key = "stats") {
-            SmarttParentalStats()
-          }
-
-          item(key = "filter_head") {
-            SmarttParentalSectionHeader(
-              title = stringResource(R.string.SmarttParental_filter__section_title),
-              caption = stringResource(R.string.SmarttParental_filter__section_caption)
-            )
-          }
-
-          item(key = "filter_master") {
-            SmarttParentalFilterMaster(state = state, onToggleChanged = onToggleChanged)
-          }
-
           item(key = "sensitivity") {
             SmarttParentalSensitivity(state = state, onSensitivitySelected = onSensitivitySelected)
           }
@@ -127,17 +93,12 @@ fun SmarttParentalScreen(
             SmarttParentalCategories(state = state, onCategoryChanged = onCategoryChanged)
           }
 
-          item(key = "block_action") {
-            SmarttParentalBlockAction(state = state, onBlockActionSelected = onBlockActionSelected)
-          }
-
           item(key = "filter_extras") {
             Box(modifier = Modifier.padding(top = 14.dp)) {
               SmarttParentalToggleCard(
                 rows = SmarttParentalCatalog.filterExtraToggles,
                 state = state,
-                onToggleChanged = onToggleChanged,
-                enabled = state.filterOn
+                onToggleChanged = onToggleChanged
               )
             }
           }
@@ -163,13 +124,6 @@ fun SmarttParentalScreen(
 
           item(key = "windows_list") {
             SmarttParentalWindowList(state = state)
-          }
-
-          item(key = "outside_window") {
-            SmarttParentalOutsideWindow(
-              state = state,
-              onOutsideWindowSelected = onOutsideWindowSelected
-            )
           }
 
           item(key = "window_extras") {
@@ -361,8 +315,6 @@ private fun SmarttParentalScreenPreview() {
       onToggleChanged = { _, _ -> },
       onCategoryChanged = { _, _ -> },
       onSensitivitySelected = {},
-      onBlockActionSelected = {},
-      onOutsideWindowSelected = {},
       onLockClick = {},
       onUnlockClick = {}
     )
@@ -371,21 +323,17 @@ private fun SmarttParentalScreenPreview() {
 
 @SignalPreview
 @Composable
-private fun SmarttParentalScreenFilterOffPreview() {
+private fun SmarttParentalScreenWindowsOffPreview() {
   Previews.Preview {
     SmarttParentalScreen(
       state = SmarttParentalState(
         toggles = persistentSetOf(SmarttParentalToggle.REQUIRE_PIN),
-        sensitivity = SmarttFilterSensitivity.STRICT,
-        blockAction = SmarttBlockAction.DELETE,
-        outsideWindow = SmarttOutsideWindow.SILENT
+        sensitivity = SmarttFilterSensitivity.STRICT
       ),
       onNavigationClick = {},
       onToggleChanged = { _, _ -> },
       onCategoryChanged = { _, _ -> },
       onSensitivitySelected = {},
-      onBlockActionSelected = {},
-      onOutsideWindowSelected = {},
       onLockClick = {},
       onUnlockClick = {}
     )
@@ -402,8 +350,6 @@ private fun SmarttParentalScreenLockedPreview() {
       onToggleChanged = { _, _ -> },
       onCategoryChanged = { _, _ -> },
       onSensitivitySelected = {},
-      onBlockActionSelected = {},
-      onOutsideWindowSelected = {},
       onLockClick = {},
       onUnlockClick = {}
     )

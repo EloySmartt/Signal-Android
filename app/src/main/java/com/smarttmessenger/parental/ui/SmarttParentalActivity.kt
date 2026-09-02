@@ -41,8 +41,6 @@ class SmarttParentalActivity : PassphraseRequiredActivity() {
           onToggleChanged = viewModel::setToggle,
           onCategoryChanged = viewModel::setCategory,
           onSensitivitySelected = viewModel::setSensitivity,
-          onBlockActionSelected = viewModel::setBlockAction,
-          onOutsideWindowSelected = viewModel::setOutsideWindow,
           onLockClick = viewModel::lock,
           onUnlockClick = viewModel::unlock
         )
