@@ -320,16 +320,11 @@ private fun AppSettingsContent(
           )
         }
 
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.preferences__stories),
-            icon = painterResource(R.drawable.symbol_stories_24),
-            onClick = {
-              callbacks.navigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
-            },
-            enabled = isRegisteredAndUpToDate
-          )
-        }
+        // [Smartt] Stories are not part of Smartt. The upstream "Stories" row that sat here — which
+        // opened StoryPrivacySettings, the one screen able to turn the feature back on — was
+        // removed. It was deliberately ungated upstream for exactly that reason, so hiding Stories
+        // means deleting the row rather than gating it.
+        // [/Smartt]
 
         item {
           Rows.TextRow(

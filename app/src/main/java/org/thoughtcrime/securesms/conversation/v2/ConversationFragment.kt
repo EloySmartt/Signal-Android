@@ -2820,20 +2820,15 @@ class ConversationFragment :
         return
       }
 
-      val parentStoryId = messageRecord.parentStoryId
-      if (parentStoryId != null) {
-        startActivity(
-          StoryViewerActivity.createIntent(
-            requireContext(),
-            StoryViewerArgs.Builder(quote.author, Recipient.resolved(quote.author).shouldHideStory)
-              .withStoryId(parentStoryId.asMessageId().id)
-              .isFromQuote(true)
-              .build()
-          )
-        )
-
+      // [Smartt] Stories are not part of Smartt. Upstream opened StoryViewerActivity here; the
+      // launch was removed and only the early return kept, so tapping the quote of a story reply
+      // does nothing instead of opening the viewer. The return is upstream's — the parent story is
+      // not in this thread, so there is no position to move to. Only reachable for story replies
+      // already in the database from a build before Stories was hidden.
+      if (messageRecord.parentStoryId != null) {
         return
       }
+      // [/Smartt]
 
       handleMoveToQuotePosition(quote.id, quote.author)
     }

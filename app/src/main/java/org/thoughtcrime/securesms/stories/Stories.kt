@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
 import org.thoughtcrime.securesms.mms.MediaConstraints
@@ -62,10 +61,19 @@ object Stories {
   /**
    * Whether or not the user has the Stories feature enabled.
    */
+  // [Smartt] Stories are not part of Smartt, so this reports disabled unconditionally. Upstream
+  // returned `!SignalStore.story.isFeatureDisabled` — the `SignalStore` import it was the only user
+  // of was removed with it. Every UI gate reads this function, so the one line hides the nav tab,
+  // the share sheet section, the camera Chat/Story toggle, the avatar story rings and the group
+  // "add to story" button. The stored value is deliberately left alone — storage-service sync and
+  // backup round-trips keep writing it, they just cannot switch the UI back on. Note this also
+  // sends allowStories=false on the chat websocket, so the server stops delivering stories at all;
+  // that is intended and is what upstream does when a user turns Stories off in settings.
   @JvmStatic
   fun isFeatureEnabled(): Boolean {
-    return !SignalStore.story.isFeatureDisabled
+    return false
   }
+  // [/Smartt]
 
   fun getHeaderAction(onClick: () -> Unit): HeaderAction {
     return HeaderAction(
