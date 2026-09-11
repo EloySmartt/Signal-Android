@@ -515,4 +515,9 @@
 
     <!-- Accessibility description of the cloud icon shown on a sent message that the recipient's communication window is holding -->
     <string name="smartt_conversation_item_sent__window_held_description">Waiting for the recipient\'s communication window</string>
+
+    <!-- Shown on a communication window whose latest changes have not reached the server yet -->
+    <string name="CommunicationWindow__not_synced">Not synced yet</string>
+    <!-- Explains that an unsynced window is not being enforced for other people yet -->
+    <string name="CommunicationWindow__not_synced_description">This window is saved on this device but hasn\'t reached the server, so it won\'t hold anyone\'s messages yet. We\'ll keep retrying.</string>
 </resources>

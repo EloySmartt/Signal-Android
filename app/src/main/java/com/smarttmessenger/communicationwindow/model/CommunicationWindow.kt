@@ -12,7 +12,13 @@ data class CommunicationWindow(
   val exceptionContacts: Set<String> = emptySet(),
   val allowCallsFromExceptions: Boolean = true,
   val allowCallsFromAll: Boolean = true,
-  val expectations: WindowExpectations = WindowExpectations()
+  val expectations: WindowExpectations = WindowExpectations(),
+  /**
+   * True when this window has local changes that have not reached our server yet. Read-only as far
+   * as callers are concerned: it is populated when reading a row, and what gets *written* is the
+   * `needsSync` parameter of `SmarttCommunicationWindowsTable.upsert`, never this field.
+   */
+  val needsSync: Boolean = false
 ) {
   fun isCurrentlyActive(timezone: ZoneId = ZoneId.systemDefault()): Boolean {
     if (!enabled) return false

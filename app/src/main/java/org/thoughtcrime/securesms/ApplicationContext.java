@@ -232,8 +232,9 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
     // [Smartt] Load held message IDs into memory cache at startup
     com.smarttmessenger.communicationwindow.cache.SmarttWindowHeldCache.INSTANCE.init(this);
-    // [Smartt] Retry pushing any communication-window changes that were saved locally while offline
-    new com.smarttmessenger.communicationwindow.repository.CommunicationWindowsRepository(this).syncPending();
+    // [Smartt] Push any communication-window changes saved locally while offline, then pull the
+    // server's state down (this is what restores windows after a reinstall or on a new device).
+    AppDependencies.getSmarttCommunicationWindowRepository().syncAll();
     // [/Smartt]
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");

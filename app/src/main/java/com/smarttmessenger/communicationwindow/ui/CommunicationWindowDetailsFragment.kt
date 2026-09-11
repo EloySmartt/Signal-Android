@@ -128,6 +128,16 @@ class CommunicationWindowDetailsFragment : DSLSettingsFragment() {
         )
       )
 
+      // Writes are local-first and pushed in the background, so a failed push is otherwise
+      // invisible: the window looks saved here while the server never learned about it.
+      if (window.needsSync) {
+        textPref(
+          title = DSLSettingsText.from(R.string.CommunicationWindow__not_synced),
+          summary = DSLSettingsText.from(R.string.CommunicationWindow__not_synced_description),
+          icon = DSLSettingsIcon.from(R.drawable.symbol_error_circle_24)
+        )
+      }
+
       dividerPref()
 
       // --- Schedule ---

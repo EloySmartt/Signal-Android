@@ -94,25 +94,58 @@ class CommunicationWindowsRepository(private val context: Context) {
 
   /** Retry every locally-changed-but-unpushed window. Call at startup / on reconnect. */
   fun syncPending() {
+    SignalExecutors.BOUNDED_IO.execute { pushPendingBlocking() }
+  }
+
+  /**
+   * Full startup sync: push local changes first, then pull the server's state down. The order
+   * matters — pulling first would race the pending pushes. On a fresh install there is nothing to
+   * push, so this is also what restores the user's windows after a reinstall or on a new device.
+   */
+  fun syncAll() {
     SignalExecutors.BOUNDED_IO.execute {
-      localTable.getPendingSync().forEach { window ->
-        runCatching {
-          api.updateWindow(window.windowId, CommunicationWindowRequest.from(window))
-          localTable.markSynced(window.windowId)
-        }.onFailure { Log.w(TAG, "syncPending failed for ${window.windowId}", it) }
-      }
+      pushPendingBlocking()
+      runCatching { pullFromServerBlocking() }
+        .onFailure { Log.w(TAG, "syncFromServer failed; local windows may be stale", it) }
     }
   }
 
-  /** Pull all windows from the server into the local table (e.g. fresh install / multi-device). */
-  fun syncFromServer(): Completable {
-    return Completable.fromAction {
-      api.getWindows().map { it.toModel() }.forEach { localTable.upsert(it, needsSync = false) }
-    }.subscribeOn(Schedulers.io())
+  /** Caller must be off the main thread. */
+  private fun pushPendingBlocking() {
+    localTable.getPendingSync().forEach { window ->
+      runCatching {
+        api.updateWindow(window.windowId, CommunicationWindowRequest.from(window))
+        localTable.markSynced(window.windowId)
+      }.onFailure { Log.w(TAG, "syncPending failed for ${window.windowId}", it) }
+    }
   }
 
-  fun getWindowMetadata(recipientAci: String): Single<WindowMetadataResponse> {
-    return Single.fromCallable { api.getWindowMetadata(recipientAci) }.subscribeOn(Schedulers.io())
+  /**
+   * Pull all windows from the server into the local table (e.g. fresh install / multi-device).
+   *
+   * Windows with unpushed local edits are skipped: the server copy is by definition older than what
+   * [syncPending] is still trying to send, so overwriting them here would silently discard the
+   * user's most recent change. They are left alone and reconciled once their push succeeds.
+   *
+   * Does not yet remove local windows the server no longer has — a window deleted on another device
+   * lingers locally until it is deleted here too.
+   */
+  fun syncFromServer(): Completable {
+    return Completable.fromAction { pullFromServerBlocking() }.subscribeOn(Schedulers.io())
+  }
+
+  /** Caller must be off the main thread. */
+  private fun pullFromServerBlocking() {
+    val pendingIds = localTable.getPendingSync().map { it.windowId }.toSet()
+    api.getWindows()
+      .map { it.toModel() }
+      .filterNot { pendingIds.contains(it.windowId) }
+      .forEach { localTable.upsert(it, needsSync = false) }
+  }
+
+  /** [recipientServiceId] is the wire form of an ACI (a bare UUID) or a PNI (`PNI:` + UUID). */
+  fun getWindowMetadata(recipientServiceId: String): Single<WindowMetadataResponse> {
+    return Single.fromCallable { api.getWindowMetadata(recipientServiceId) }.subscribeOn(Schedulers.io())
   }
 
   class NoSuchWindowException(id: String) : Exception("No window with id $id")

@@ -99,8 +99,9 @@ class SmarttCommunicationWindowApi(private val okHttpClient: OkHttpClient) {
 
   fun deleteWindow(windowId: String) = delete("$BASE/$windowId")
 
-  fun getWindowMetadata(recipientAci: String): WindowMetadataResponse =
-    mapper.readValue(get("$BASE/metadata/$recipientAci"))
+  /** [recipientServiceId] is an ACI (a bare UUID) or a PNI (`PNI:` + UUID); the server parses both. */
+  fun getWindowMetadata(recipientServiceId: String): WindowMetadataResponse =
+    mapper.readValue(get("$BASE/metadata/$recipientServiceId"))
 }
 
 // --- DTOs ---

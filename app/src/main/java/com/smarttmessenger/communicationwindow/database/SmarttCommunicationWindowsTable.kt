@@ -13,7 +13,11 @@ class SmarttCommunicationWindowsTable(private val context: Context) {
 
   private val db get() = SmarttDatabase.getInstance(context).writableDatabase
 
-  /** Local-first write. [needsSync] = true marks the row as pending a background push to our server. */
+  /**
+   * Local-first write. [needsSync] = true marks the row as pending a background push to our server.
+   * This parameter — not [CommunicationWindow.needsSync] — is what gets written; the model field is
+   * populated on read only, so a window read back and re-saved cannot silently clear its own flag.
+   */
   fun upsert(window: CommunicationWindow, needsSync: Boolean = true) {
     val values = ContentValues().apply {
       put(COL_WINDOW_ID, window.windowId)
@@ -33,10 +37,14 @@ class SmarttCommunicationWindowsTable(private val context: Context) {
     SmarttWindowsObserver.notifyChanged()
   }
 
-  /** Marks a row as successfully pushed to the server. Does NOT notify (no UI-visible change). */
+  /**
+   * Marks a row as successfully pushed to the server. Notifies, because the UI shows an unsynced
+   * indicator off [CommunicationWindow.needsSync] and has to drop it once the push lands.
+   */
   fun markSynced(windowId: String) {
     val values = ContentValues().apply { put(COL_NEEDS_SYNC, 0) }
     db.update(TABLE_NAME, values, "$COL_WINDOW_ID = ?", arrayOf(windowId))
+    SmarttWindowsObserver.notifyChanged()
   }
 
   /** Windows changed locally but not yet pushed to the server. */
@@ -83,7 +91,8 @@ class SmarttCommunicationWindowsTable(private val context: Context) {
       usualReplyTime = getString(getColumnIndexOrThrow(COL_USUAL_REPLY_TIME))
         ?.let { runCatching { WindowExpectations.UsualReplyTime.valueOf(it) }.getOrNull() },
       personalNote = getString(getColumnIndexOrThrow(COL_PERSONAL_NOTE))
-    )
+    ),
+    needsSync = getInt(getColumnIndexOrThrow(COL_NEEDS_SYNC)) == 1
   )
 
   private fun List<CommunicationWindowSchedule>.toJson(): String {

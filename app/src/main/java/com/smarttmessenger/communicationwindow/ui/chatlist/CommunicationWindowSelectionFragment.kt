@@ -86,7 +86,7 @@ class CommunicationWindowSelectionFragment : DSLSettingsBottomSheetFragment() {
     val status = getString(if (window.enabled) R.string.CommunicationWindow__on else R.string.CommunicationWindow__off)
     val schedule = window.schedules.firstOrNull()
     if (!window.enabled || schedule == null || !schedule.enabled) {
-      return status
+      return status.withSyncState(window)
     }
 
     val start = LocalTime.of(schedule.start / 60, schedule.start % 60).formatHours(requireContext())
@@ -101,8 +101,16 @@ class CommunicationWindowSelectionFragment : DSLSettingsBottomSheetFragment() {
         .joinToString(", ") { it.getDisplayName(TextStyle.SHORT, Locale.getDefault()) }
     }
 
-    return if (days.isNotEmpty()) "$status · $timeRange\n$days" else "$status · $timeRange"
+    val summary = if (days.isNotEmpty()) "$status · $timeRange\n$days" else "$status · $timeRange"
+    return summary.withSyncState(window)
   }
+
+  /**
+   * Writes are local-first and pushed in the background, so a window whose push keeps failing looks
+   * identical to a working one. Call it out here rather than letting it silently do nothing.
+   */
+  private fun String.withSyncState(window: CommunicationWindow): String =
+    if (window.needsSync) "$this\n${getString(R.string.CommunicationWindow__not_synced)}" else this
 
   /** Deterministic background color per window (we don't store one). */
   private fun colorFor(window: CommunicationWindow): AvatarColor {

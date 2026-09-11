@@ -39,21 +39,12 @@ class SmarttWindowBannerView(context: Context) {
     val endFormatted = minutesToAmPm(metadata.windowEndMinutes)
     title.text = "${recipientName}'s communication window is closed from $startFormatted to $endFormatted"
 
+    // One view instance is reused for every recipient, so each row's visibility must be set on every
+    // bind. Only ever showing rows would leak the previous contact's expectations onto this banner.
     val exp = metadata.expectations
-    if (exp != null) {
-      exp.checkFrequency?.let {
-        checkFrequency.text = "Usual check frequency: ${it.lowercase().replace('_', ' ')}"
-        checkFrequency.isVisible = true
-      }
-      exp.usualReplyTime?.let {
-        replyTime.text = "Usual reply time: ${it.lowercase().replace('_', ' ')}"
-        replyTime.isVisible = true
-      }
-      exp.personalNote?.let {
-        personalNote.text = "\"$it\""
-        personalNote.isVisible = true
-      }
-    }
+    checkFrequency.setTextOrHide(exp?.checkFrequency?.let { "Usual check frequency: ${it.lowercase().replace('_', ' ')}" })
+    replyTime.setTextOrHide(exp?.usualReplyTime?.let { "Usual reply time: ${it.lowercase().replace('_', ' ')}" })
+    personalNote.setTextOrHide(exp?.personalNote?.let { "\"$it\"" })
 
     root.isVisible = true
     setExpanded(true)
@@ -69,6 +60,11 @@ class SmarttWindowBannerView(context: Context) {
     expanded = expand
     details.isVisible = expand
     toggle.rotation = if (expand) 0f else 180f
+  }
+
+  private fun TextView.setTextOrHide(value: String?) {
+    text = value ?: ""
+    isVisible = value != null
   }
 
   private fun minutesToAmPm(minutes: Int): String {
